@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>{{ setting('hotel_name') }} - @stack('title')</title>
 
-    <link rel="icon" type="image/gif" sizes="18x17" href="{{ asset('assets/img/home_icon.gif') }}">
+    <link rel="icon" type="image/gif" sizes="18x17" href="{{ asset('assets/images/home_icon.gif') }}">
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -26,7 +26,7 @@
     <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
         <div class="container-fluid d-flex flex-column p-0">
             <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="{{ route('dashboard') }}">
-                <img class="w-75 drop-shadow" src="{{ asset('assets/img/kasja_atom_logo.png') }}" alt="Atom logo">
+                <img class="w-75 drop-shadow" src="{{ asset('assets/images/kasja_atom_logo.png') }}" alt="Atom logo">
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="nav navbar-nav text-light" id="accordionSidebar">
@@ -45,13 +45,13 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
+                    <a class="dropdown-toggle nav-link {{ request()->routeIs('articles.*') ? 'active' : '' }}" data-toggle="dropdown" aria-expanded="false" href="javascript:void(0)">
                         <i class="fa fa-newspaper-o"></i>
                         Article Management
                     </a>
 
                     <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item" role="presentation" href="view-all-articles.html">
+                        <a class="dropdown-item" role="presentation" href="{{ route('articles.index') }}">
                             View All
                         </a>
                         <hr>
@@ -141,9 +141,11 @@
             <div class="container my-auto">
                 <div class="text-center my-auto copyright">
                     <span>&copy {{ setting('hotel_name') }} - Made with</span>
+
                     <svg xmlns="http://www.w3.org/2000/svg" style="height: 15px; width: 15px; color: red;"" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
                     </svg>
+
                     By <a href="https://devbest.com/members/object.78351/" target="_blank">Object</a>
                 </div>
             </div>
@@ -154,11 +156,11 @@
         <i class="fas fa-angle-up"></i>
     </a>
 </div>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-<script src="assets/js/theme.js"></script>
-<script src="assets/js/tinymce.js"></script>
+<script src="{{ asset('assets/js/theme.js') }}"></script>
+<script src="{{ asset('assets/js/tinymce.js') }}"></script>
 
 @stack('javascript'))
 </body>

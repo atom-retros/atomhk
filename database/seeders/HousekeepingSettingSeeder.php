@@ -15,6 +15,11 @@ class HousekeepingSettingSeeder extends Seeder
                 'value' => 'Atom',
                 'comment' => 'Specifies the hotel name'
             ],
+            [
+                'key' => 'article_images_path',
+                'value' => '/assets/images/articles',
+                'comment' => 'Specifies path where all t he article images are located'
+            ],
         ];
 
         HousekeepingSetting::query()->upsert($settings, ['key']);

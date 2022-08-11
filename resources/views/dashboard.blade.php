@@ -16,7 +16,7 @@
                         </div>
 
                         <div class="col-auto">
-                            <img src="assets/img/signup_icon.gif">
+                            <img src="assets/images/signup_icon.gif">
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="col-auto">
-                            <img src="assets/img/signup_icon.gif">
+                            <img src="assets/images/signup_icon.gif">
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                         </div>
 
                         <div class="col-auto">
-                            <img src="assets/img/signup_icon.gif">
+                            <img src="assets/images/signup_icon.gif">
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="col-auto">
-                            <img src="assets/img/signup_icon.gif">
+                            <img src="assets/images/signup_icon.gif">
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
         <div class="card col-12">
             <div class="card-body">
                 <div class="d-flex justify-content-center w-100">
-                    <img src="{{ asset('assets/img/kasja_atom_logo.png') }}" alt="">
+                    <img src="{{ asset('assets/images/kasja_atom_logo.png') }}" alt="">
                 </div>
                 <br><br>
 
