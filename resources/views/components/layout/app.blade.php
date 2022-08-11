@@ -118,18 +118,21 @@
                                    data-toggle="dropdown" aria-expanded="false"
                                    href="#">
                                     <span class="d-none d-lg-inline mr-2 text-gray-600 small">
-                                        {username}
+                                        {{ auth()->user()->username }}
                                     </span>
-
-                                    <img class="border rounded-circle img-profile"  src="assets/img/avatars/avatar5.jpeg" alt="Profile pic" />
+                                    <img class="mt-4" src="https://imager.habstar.net/?figure={{ auth()->user()->look }}&direction=2&headonly=1&head_direction=2&gesture=sml" alt="Profile pic" />
                                 </a>
 
                                 <div  class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
-                                    <a class="dropdown-item" role="presentation" href="#">
+                                    <a class="dropdown-item" role="presentation" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        &nbsp;Logout
+                                        {{ __('Logout') }}
                                     </a>
-                                </div>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                            </div>
                             </div>
                         </li>
                     </ul>
