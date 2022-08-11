@@ -1,64 +1,63 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<div align="center">
+<img src="https://i.imgur.com/9ePNdJ4.png" alt="Atom HK"/>
+</div>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## What is Atom HK?
+Atom HK is a standalone Habbo retro housekeeping, aiming to provide an easy and solid experience for you to manage various aspects of your hotel. It offers an easy development experience thanks to the use of Laravel & Bootstrap.
 
-## About Laravel
+*Standalone means it is its own project, rather than being coded directly into the CMS, it will rather be on a sub-domain, connected to the same database as your CMS. This allows you to easily use the housekeeping with little to no adjustments no matter the CMS you use*
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**What technologies is being used?**
+- Laravel 9.x (Latest as of August 2022)
+  [Laravel docs](https://laravel.com/docs/9.x).
+- Vite [Vite docs](https://vitejs.dev/).
+- Bootstrap
+  [Bootstrap docs](https://getbootstrap.com/docs/4.0/getting-started/introduction/).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+If you are new to Laravel, then theres luckily tons of resources online to help you learn it. One of the best options is those two video courses. 
+- https://laracasts.com/series/laravel-8-from-scratch
+- https://laracasts.com/series/whats-new-in-laravel-9
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Why was Atom HK made?
+Atom HK was made to bring the retro community a solid base to build a housekeeping from. As previously mentioned Atom HK is a standalone housekeeping, allowing you to use it on any CMS with little to no edits.
 
-## Learning Laravel
+Laravel was chosen as its backend, due to it being robust and battle tested "in the real world" on top up that it has a huge community to back it, with tons of free (& paid) learning resources and its solid documentation that other projects' normally lack. Combine those things together and you'll be able to build anything you want even as a beginner, you dont need to be a PHP expert or a frontend master to work with Atom HK!
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Setup guide
+To install Atom HK you'll need to do the following:
+- PHP 8.1 or above [PHP Downloads](https://www.php.net/downloads.php)
+- Composer v2 [Composer Download](https://getcomposer.org/download/)
+- NPM (LTS) [Node Download](https://nodejs.org/en/download/)
+- An Arcturus Morningstar database [Database repository](https://git.krews.org/morningstar/arcturus-morningstar-base-database)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+After all of the above has been installed you've to do the following:
+- Open CMD and navigate into the path you want the housekeeping to be located at, and run the commands listed below
 
-## Laravel Sponsors
+#### Windows
+```
+[Https] git clone https://github.com/ObjectRetros/atomhk.git
+[SSH - Recommended] git clone git@github.com:ObjectRetros/atomhk.git
+cd atomhk
+copy .env.example .env
+composer install 
+npm install && npm run dev (for production you run: npm run build)
+php artisan key:generate
+php artisan migrate --seed
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+For IIS - You must link your site to the public folder of the housekeeping
 
-### Premium Partners
+#### Linux
+```
+[Https] git clone https://github.com/ObjectRetros/atomhk.git
+[SSH - Recommended] git clone git@github.com:ObjectRetros/atomhk.git
+cd atomhk
+cp .env.example .env
+composer install
+npm install && npm run dev (for production you run: npm run build)
+php artisan key:generate
+php artisan migrate --seed
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+For NGINX you can copy the config from here: [Deploy a site on nginx](https://laravel.com/docs/9.x/deployment#nginx)
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
