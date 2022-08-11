@@ -1,0 +1,8 @@
+.drop-shadow {
+    -webkit-filter: drop-shadow(1px 1px 0 #fff) drop-shadow(-1px 1px 0 #fff)
+    drop-shadow(0 -2px 0 #fff);
+}
+
+.bg-gradient-primary {
+    background-image: linear-gradient(180deg, #12163f 10%, #010f2d);
+}

@@ -17,7 +17,7 @@
 <body>
     <div class="container" style="height: 100vh;">
         <div class="d-flex flex-column gap- justify-content-center align-items-center h-100">
-            <img src="https://habbofont.net/font/palooza_blue/{{ setting('hotel_name') }}.gif" alt="">
+            <img src="{{ asset('assets/img/kasja_atom_logo.png') }}" alt="">
 
             <div class="card w-50 mt-3">
                 <div class="card-body">
