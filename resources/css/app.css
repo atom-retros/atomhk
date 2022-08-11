@@ -6,3 +6,9 @@
 .bg-gradient-primary {
     background-image: linear-gradient(180deg, #12163f 10%, #010f2d);
 }
+
+.avatar {
+    margin-top: -20px;
+    width: 55px;
+    height: 90px;
+}
