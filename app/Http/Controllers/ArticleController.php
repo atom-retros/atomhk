@@ -9,9 +9,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
-// TODO: Refactor permission checks into policies
-class WebsiteArticlesController extends Controller
+class ArticleController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(WebsiteArticle::class, 'article');
+    }
+
     public function index()
     {
         return view('articles.index', [
@@ -24,10 +28,6 @@ class WebsiteArticlesController extends Controller
 
     public function create()
     {
-        if (! hasPermission(Auth::user(), 'write_article')) {
-            return redirect()->back()->withErrors(__('You do not have permission to do this.'));
-        }
-
         return view('articles.create', [
             'images' => File::allFiles(public_path(setting('article_images_path'))),
         ]);
@@ -35,29 +35,19 @@ class WebsiteArticlesController extends Controller
 
     public function store(ArticleFormRequest $request)
     {
-        if (! hasPermission(Auth::user(), 'write_article')) {
-            return redirect()->back()->withErrors(__('You do not have permission to do this.'));
-        }
-
-        $request->validated();
-
         $request->user()->articles()->create([
-            'slug' => sprintf('%s-%s', Str::slug($request->input('title')), time()),
+            'slug' => sprintf('%s-%s', WebsiteArticle::orderByDesc('id')->first()->id + 1, Str::slug($request->input('title'))),
             'title' => $request->input('title'),
             'short_story' => $request->input('short_story'),
             'full_story' => $request->input('full_story'),
             'image' => sprintf('%s/%s', setting('article_images_path'), $request->input('image')),
         ]);
 
-        return redirect()->route('articles.index')->with('success', 'The article has been posted!');
+        return to_route('articles.index')->with('success', 'The article has been posted!');
     }
 
     public function edit(WebsiteArticle $article)
     {
-        if (! hasPermission(Auth::user(), 'edit_article')) {
-            return redirect()->back()->withErrors(__('You do not have permission to do this.'));
-        }
-
         return view('articles.edit', [
             'article' => $article,
             'images' => File::allFiles(public_path(setting('article_images_path'))),
@@ -66,12 +56,6 @@ class WebsiteArticlesController extends Controller
 
     public function update(ArticleFormRequest $request, WebsiteArticle $article)
     {
-        if (! hasPermission(Auth::user(), 'edit_article')) {
-            return redirect()->back()->withErrors(__('You do not have permission to do this.'));
-        }
-
-        $request->validated();
-
        $article->update([
             'title' => $request->input('title'),
             'short_story' => $request->input('short_story'),
@@ -79,15 +63,11 @@ class WebsiteArticlesController extends Controller
             'image' => sprintf('%s/%s', setting('article_images_path'), $request->input('image')),
         ]);
 
-        return redirect()->route('articles.index')->with('success', 'The article has been updated!');
+        return to_route('articles.index')->with('success', 'The article has been updated!');
     }
 
     public function destroy(WebsiteArticle $article)
     {
-        if (! hasPermission(Auth::user(), 'delete_article')) {
-            return redirect()->back()->withErrors(__('You do not have permission to do this.'));
-        }
-
         $article->delete();
 
         return redirect()->back()->with('success', __('The article has been deleted!'));

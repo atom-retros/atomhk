@@ -14,7 +14,7 @@
                                 <p class="text-primary m-0 font-weight-bold">Edit Article</p>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('articles.update', $article->slug) }}" method="POST">
+                                <form action="{{ route('articles.update', $article) }}" method="POST">
                                     @method('PUT')
                                     @csrf
 

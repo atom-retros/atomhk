@@ -45,7 +45,7 @@
                                     <td>
                                         <div class="btn-group" role="group">
                                             @if(hasPermission(auth()->user(), 'edit_article'))
-                                                <a href="{{ route('articles.edit', $article->slug) }}">
+                                                <a href="{{ route('articles.edit', $article) }}">
                                                     <button class="btn btn-primary" type="button">
                                                         <i class="fa fa-pencil"></i>
                                                     </button>
@@ -53,7 +53,7 @@
                                             @endif
 
                                             @if(hasPermission(auth()->user(), 'delete_article'))
-                                                <form class="ml-2" action="{{ route('articles.destroy', $article->slug) }}" method="POST">
+                                                <form class="ml-2" action="{{ route('articles.destroy', $article) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
 
