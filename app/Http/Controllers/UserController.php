@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(User::class, 'user');
+    }
+
     public function index()
     {
         return view('users.index', [
@@ -22,8 +27,6 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        $this->authorize('update', Auth::user());
-
         return view('users.edit', [
             'user' => $user->load(['permission']),
             'ranks' =>  Permission::query()->where('id', '!=', $user->rank)->get(),
@@ -33,10 +36,6 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user, RconService $rcon)
     {
-        $this->authorize('update', Auth::user());
-
-        $request->validated();
-
         if ($user->username !== $request->input('username')) {
             if ($user->online) {
                 $rcon->disconnectUser($user);
@@ -55,7 +54,6 @@ class UserController extends Controller
                 'motto' => $request->input('motto'),
             ]);
         }
-
 
         if ($user->online == '1') {
             $rcon->alertUser($user, 'Your rank has been updated, you will therefore be disconnected. You can log back in at anytime!');
@@ -91,8 +89,6 @@ class UserController extends Controller
 
     public function destroy(User $user, RconService $rcon)
     {
-        $this->authorize('delete', Auth::user());
-
         if ($user->online) {
             $rcon->disconnectUser($user);
             sleep(2);
