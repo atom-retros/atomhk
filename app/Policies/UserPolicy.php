@@ -9,12 +9,57 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function update(User $user, User $model): bool
+    /**
+     * Determine whether the user can view any models.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function viewAny(User $user)
     {
         return hasPermission($user, 'edit_user');
     }
 
-    public function delete(User $user, User $model): bool
+    /**
+     * Determine whether the user can view the model.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function view(User $user)
+    {
+        return hasPermission($user, 'edit_user');
+    }
+
+    /**
+     * Determine whether the user can create models.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function create(User $user)
+    {
+        return hasPermission($user, 'write_article');
+    }
+
+    /**
+     * Determine whether the user can update the model.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function update(User $user)
+    {
+        return hasPermission($user, 'edit_user');
+    }
+
+    /**
+     * Determine whether the user can delete the model.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function delete(User $user)
     {
         return hasPermission($user, 'delete_user');
     }
