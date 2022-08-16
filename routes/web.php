@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\WebsiteArticlesController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WordfilterController;
@@ -29,12 +29,12 @@ Route::middleware('auth')->group(function () {
 
     // Article management
     Route::prefix('articles')->group(function () {
-        Route::get('/', [WebsiteArticlesController::class, 'index'])->name('articles.index');
-        Route::get('/create', [WebsiteArticlesController::class, 'create'])->name('articles.create');
-        Route::post('/create', [WebsiteArticlesController::class, 'store'])->name('articles.store');
-        Route::get('/{article:slug}/edit', [WebsiteArticlesController::class, 'edit'])->name('articles.edit');
-        Route::put('/{article:slug}/edit', [WebsiteArticlesController::class, 'update'])->name('articles.update');
-        Route::delete('/{article:slug}/delete', [WebsiteArticlesController::class, 'destroy'])->name('articles.destroy');
+        Route::get('/', [ArticleController::class, 'index'])->name('articles.index');
+        Route::get('/create', [ArticleController::class, 'create'])->name('articles.create');
+        Route::post('/create', [ArticleController::class, 'store'])->name('articles.store');
+        Route::get('/{article}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
+        Route::put('/{article}/edit', [ArticleController::class, 'update'])->name('articles.update');
+        Route::delete('/{article}/delete', [ArticleController::class, 'destroy'])->name('articles.destroy');
     });
 
     // Wordfilter management

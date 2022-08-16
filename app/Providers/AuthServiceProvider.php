@@ -6,6 +6,7 @@ namespace App\Providers;
 use App\Models\User;
 use App\Models\WebsiteArticle;
 use App\Models\Wordfilter;
+use App\Policies\ArticlePolicy;
 use App\Policies\UserPolicy;
 use App\Policies\WebsiteArticlePolicy;
 use App\Policies\WordfilterPolicy;
@@ -21,7 +22,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
         User::class => UserPolicy::class,
-        // WebsiteArticle::class => WebsiteArticlePolicy::class,
+        WebsiteArticle::class => ArticlePolicy::class,
         Wordfilter::class => WordfilterPolicy::class,
     ];
 
