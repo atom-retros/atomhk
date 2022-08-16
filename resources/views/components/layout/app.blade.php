@@ -61,6 +61,13 @@
                         </a>
                     </div>
                 </li>
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link {{ request()->routeIs('wordfilter.*') ? 'active' : '' }}" href="{{ route('wordfilter.index') }}">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Wordfilter Management</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
