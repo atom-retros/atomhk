@@ -45,6 +45,11 @@ class HousekeepingPermissionSeeder extends Seeder
                 'min_rank' => 6,
                 'description' => 'The minimum rank required before being able to manage the wordfilter',
             ],
+            [
+                'permission' => 'manage_bans',
+                'min_rank' => 6,
+                'description' => 'The minimum rank required before being able to manage the bans',
+            ],
         ];
 
         HousekeepingPermission::query()->upsert($permissions, ['permission']);

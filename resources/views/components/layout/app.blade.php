@@ -68,6 +68,13 @@
                         <span>Wordfilter Management</span>
                     </a>
                 </li>
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link {{ request()->routeIs('bans.*') ? 'active' : '' }}" href="{{ route('bans.index') }}">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Bans Management</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
