@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\BansController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WordfilterController;
@@ -45,5 +46,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/{key}/edit', [WordfilterController::class, 'edit'])->name('wordfilter.edit');
         Route::put('/{key}/edit', [WordfilterController::class, 'update'])->name('wordfilter.update');
         Route::delete('/{key}/delete', [WordfilterController::class, 'destroy'])->name('wordfilter.destroy');
+    });
+
+    // Ban management
+    Route::prefix('bans')->group(function () {
+        Route::get('/', [BansController::class, 'index'])->name('bans.index');
+        Route::delete('/{ban}/delete', [BansController::class, 'destroy'])->name('bans.destroy');
     });
 });
