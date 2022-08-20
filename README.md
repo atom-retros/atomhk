@@ -48,8 +48,14 @@ composer install
 npm install && npm run dev (for production you run: npm run build)
 php artisan key:generate
 php artisan migrate --seed
+
+If you are using the housekeeping in production, dont forget to set the:
+- APP_ENV=local to APP_ENV=production
+- APP_DEBUG=true to APP_DEBUG=false
 ```
 For IIS - You must link your site to the public folder of the housekeeping
+
+**For production**
 
 #### Required extensions
 Please verify the following extensions are enabled inside your php.ini file. If they have a ";" in front of them it means that they're commented out and not enabled. Simply remove the ";" to enable them.
@@ -69,6 +75,10 @@ composer install
 npm install && npm run dev (for production you run: npm run build)
 php artisan key:generate
 php artisan migrate --seed
+
+If you are using the housekeeping in production, dont forget to set the:
+- APP_ENV=local to APP_ENV=production
+- APP_DEBUG=true to APP_DEBUG=false
 ```
 
 #### Required extensions
