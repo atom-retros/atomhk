@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoomChatlogsSearchFormRequest extends FormRequest
+class ChatlogsSearchFormRequest extends FormRequest
 {
     public function rules(): array
     {

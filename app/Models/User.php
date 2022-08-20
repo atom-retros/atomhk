@@ -49,4 +49,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(WebsiteArticle::class);
     }
+
+    public function privateChatlogsSent(): HasMany
+    {
+        return $this->hasMany(ChatlogPrivate::class, 'user_from_id', 'id');
+    }
+
+    public function privateChatlogsReceived(): HasMany
+    {
+        return $this->hasMany(ChatlogPrivate::class, 'user_to_id', 'id');
+    }
 }

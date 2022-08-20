@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BansController;
 use App\Http\Controllers\ChatlogsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PrivateChatlogsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WordfilterController;
 use Illuminate\Support\Facades\Route;
@@ -60,6 +61,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [ChatlogsController::class, 'index'])->name('chatlogs.room');
         Route::get('/filter', [ChatlogsController::class, 'search'])->name('chatlogs.filter');
 
-        Route::get('/private', [ChatlogsController::class, 'privateChatlogs'])->name('chatlogs.private');
+        Route::get('/private', [PrivateChatlogsController::class, 'index'])->name('chatlogs.private');
+        Route::get('/private/filter', [PrivateChatlogsController::class, 'search'])->name('chatlogs.private.filter');
     });
 });

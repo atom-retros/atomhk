@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Http\Requests\RoomChatlogsSearchFormRequest;
+use App\Http\Requests\ChatlogsSearchFormRequest;
 use App\Models\ChatlogRoom;
 use App\Models\Room;
 use App\Models\User;
@@ -25,7 +25,7 @@ class ChatlogsController extends Controller
         ]);
     }
 
-    public function search(RoomChatlogsSearchFormRequest $request) {
+    public function search(ChatlogsSearchFormRequest $request) {
         $input = $request->get('search_input');
 
         return match ($request->get('sort_by')) {
