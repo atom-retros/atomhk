@@ -39,7 +39,7 @@
         <div class="mb-4">
             <div class="card shadow mt-4">
                 <div class="card-header py-3">
-                    <p class="text-primary m-0 font-weight-bold">Chatlogs List</p>
+                    <p class="text-primary m-0 font-weight-bold">Room Chatlogs</p>
                 </div>
 
                 <div class="card-body">
