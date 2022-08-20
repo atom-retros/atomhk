@@ -15,24 +15,12 @@ function sensitiveInfo($string)
 
 function setting(string $setting): string
 {
-    if (!Cache::has('housekeeping_setting')) {
-        $housekeepingSetting = HousekeepingSetting::query()->where('key', '=', $setting)->first()->value ?? '';
-
-        Cache::put('housekeeping_setting', $housekeepingSetting, now()->addMinutes(30));
-    }
-
-    return Cache::get('housekeeping_setting');
+    return HousekeepingSetting::query()->where('key', '=', $setting)->first()->value ?? '';
 }
 
 function hasPermission($user, string $permission): bool
 {
-    if (!Cache::has('has_permission')) {
-        $hasPermission = $user->rank >= HousekeepingPermission::query()
+    return $user->rank >= HousekeepingPermission::query()
             ->where('permission', '=', $permission)
             ->first()->min_rank;
-
-        Cache::put('has_permission', $hasPermission, now()->addMinutes(30));
-    }
-
-    return Cache::get('has_permission');
 }
