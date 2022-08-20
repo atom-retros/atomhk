@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleFormRequest;
 use App\Models\WebsiteArticle;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -39,7 +37,7 @@ class ArticleController extends Controller
             'slug' => sprintf('%s-%s', WebsiteArticle::orderByDesc('id')->first()->id + 1, Str::slug($request->input('title'))),
             'title' => $request->input('title'),
             'short_story' => $request->input('short_story'),
-            'full_story' => $request->input('full_story'),
+            'full_story' => clean($request->input('full_story')),
             'image' => sprintf('%s/%s', setting('article_images_path'), $request->input('image')),
         ]);
 
@@ -59,7 +57,7 @@ class ArticleController extends Controller
        $article->update([
             'title' => $request->input('title'),
             'short_story' => $request->input('short_story'),
-            'full_story' => $request->input('full_story'),
+            'full_story' => clean($request->input('full_story')),
             'image' => sprintf('%s/%s', setting('article_images_path'), $request->input('image')),
         ]);
 

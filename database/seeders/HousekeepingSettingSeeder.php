@@ -18,7 +18,7 @@ class HousekeepingSettingSeeder extends Seeder
             [
                 'key' => 'article_images_path',
                 'value' => '/assets/images/articles',
-                'comment' => 'Specifies path where all t he article images are located'
+                'comment' => 'Specifies path where all the article images are located'
             ],
         ];
 

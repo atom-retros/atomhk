@@ -52,12 +52,12 @@
 
                     <div class="dropdown-menu" role="menu">
                         <a class="dropdown-item" role="presentation" href="{{ route('articles.index') }}">
-                            View All
+                            All Articles
                         </a>
                         <hr>
 
-                        <a class="dropdown-item" role="presentation" href="post-article.html">
-                            Post Article
+                        <a class="dropdown-item" role="presentation" href="{{ route('articles.create') }}">
+                            Create Article
                         </a>
                     </div>
                 </li>
