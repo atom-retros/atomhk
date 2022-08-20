@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         return view('users.index', [
             'users' => User::query()
-                ->select(['id', 'username', 'rank', 'look', 'online', 'ip_current', 'last_online'])
+                ->select(['id', 'username', 'mail', 'motto', 'rank', 'look', 'online', 'ip_current', 'last_online'])
                 ->orderByDesc('id')
                 ->paginate(15),
         ]);
