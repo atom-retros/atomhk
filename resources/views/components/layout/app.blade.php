@@ -75,6 +75,24 @@
                         <span>Bans Management</span>
                     </a>
                 </li>
+
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle nav-link {{ request()->routeIs('chatlogs.*') ? 'active' : '' }}" data-toggle="dropdown" aria-expanded="false" href="javascript:void(0)">
+                        <i class="fa fa-newspaper-o"></i>
+                        Chatlogs
+                    </a>
+
+                    <div class="dropdown-menu" role="menu">
+                        <a class="dropdown-item" role="presentation" href="{{ route('chatlogs.room') }}">
+                            Room chatlogs
+                        </a>
+                        <hr>
+
+                        <a class="dropdown-item" role="presentation" href="{{ route('chatlogs.private') }}">
+                            Private chatlogs
+                        </a>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
@@ -175,6 +193,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
 <script src="{{ asset('assets/js/theme.js') }}"></script>
 <script src="{{ asset('assets/js/tinymce.js') }}"></script>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
 
 @stack('javascript'))
 </body>

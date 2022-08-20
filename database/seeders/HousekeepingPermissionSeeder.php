@@ -50,6 +50,11 @@ class HousekeepingPermissionSeeder extends Seeder
                 'min_rank' => 6,
                 'description' => 'The minimum rank required before being able to manage the bans',
             ],
+            [
+                'permission' => 'manage_room_chatlogs',
+                'min_rank' => 6,
+                'description' => 'The minimum rank required before being able to manage the room chatlogs',
+            ],
         ];
 
         HousekeepingPermission::query()->upsert($permissions, ['permission']);

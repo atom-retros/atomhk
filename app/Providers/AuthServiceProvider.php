@@ -3,10 +3,14 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Models\ChatlogPrivate;
+use App\Models\ChatlogRoom;
 use App\Models\User;
 use App\Models\WebsiteArticle;
 use App\Models\Wordfilter;
 use App\Policies\ArticlePolicy;
+use App\Policies\ChatlogPrivatePolicy;
+use App\Policies\ChatlogRoomPolicy;
 use App\Policies\UserPolicy;
 use App\Policies\WebsiteArticlePolicy;
 use App\Policies\WordfilterPolicy;
@@ -24,6 +28,8 @@ class AuthServiceProvider extends ServiceProvider
         User::class => UserPolicy::class,
         WebsiteArticle::class => ArticlePolicy::class,
         Wordfilter::class => WordfilterPolicy::class,
+        ChatlogPrivate::class => ChatlogPrivatePolicy::class,
+        ChatlogRoom::class => ChatlogRoomPolicy::class,
     ];
 
     /**
