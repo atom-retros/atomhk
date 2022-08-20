@@ -27,12 +27,13 @@
                         <tbody>
                             @foreach($users as $user)
                                 <tr>
-                                    <td class="d-flex overflow-hidden" style="height: 50px;">
-                                        <img class="avatar" src="https://imager.habstar.net/?figure={{ $user->look }}&direction=2&headonly=1&head_direction=2&gesture=sml" alt="">
+                                    <td class="d-flex overflow-hidden">
+                                        <img style="height: 50px;" class="avatar" src="{{ setting('avatar_imager') }}{{ $user->look }}&direction=2&headonly=1&head_direction=2&gesture=sml" alt="">
                                         {{ $user->username }}
                                     </td>
                                     <td>{{ sensitiveInfo($user->mail) }}</td>
                                     <td>{{ $user->motto }}</td>
+                                    <td class="{{ $user->online ? 'text-success' : 'text-danger' }}">{{ $user->online ? 'Online' : 'Offline' }}</td>
                                     <td>{{ sensitiveInfo($user->ip_current) }}</td>
                                     <td>{{ date('Y/m/d', $user->last_online) }}</td>
                                     <td>
