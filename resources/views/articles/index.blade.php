@@ -39,8 +39,8 @@
                                     <td>{{ $article->title }}</td>
                                     <td>{{ Str::limit($article->short_story, 30) }}</td>
                                     <td>{{ Str::limit($article->full_story, 30) }}</td>
-                                    <td>{{ $article->user->username }}</td>
                                     <td>{{ $article->image }}</td>
+                                    <td>{{ $article->user?->username }}</td>
 
                                     <td>
                                         <div class="btn-group" role="group">

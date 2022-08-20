@@ -21,7 +21,7 @@ class UserController extends Controller
             'users' => User::query()
                 ->select(['id', 'username', 'rank', 'look', 'online', 'ip_current', 'last_online'])
                 ->orderByDesc('id')
-                ->paginate(3),
+                ->paginate(15),
         ]);
     }
 

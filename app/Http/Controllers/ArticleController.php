@@ -22,7 +22,7 @@ class ArticleController extends Controller
             'articles' => WebsiteArticle::query()
                 ->orderByDesc('id')
                 ->with('user:id,username')
-                ->paginate(10),
+                ->paginate(15),
         ]);
     }
 
