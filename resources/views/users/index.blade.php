@@ -33,8 +33,8 @@
                                     </td>
                                     <td>{{ sensitiveInfo($user->mail) }}</td>
                                     <td>{{ $user->motto }}</td>
-                                    <td class="{{ $user->online ? 'text-success' : 'text-danger' }}">{{ $user->online ? 'Online' : 'Offline' }}</td>
                                     <td>{{ sensitiveInfo($user->ip_current) }}</td>
+                                    <td class="{{ $user->online ? 'text-success' : 'text-danger' }}">{{ $user->online ? 'Online' : 'Offline' }}</td>
                                     <td>{{ date('Y/m/d', $user->last_online) }}</td>
                                     <td>
                                         <div class="btn-group" role="group">
