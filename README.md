@@ -32,6 +32,7 @@ To install Atom HK you'll need the following:
 - Composer v2 [Composer Download](https://getcomposer.org/download/)
 - NPM (LTS) [Node Download](https://nodejs.org/en/download/)
 - An Arcturus Morningstar database [Database repository](https://git.krews.org/morningstar/arcturus-morningstar-base-database)
+- A free API key from (Tiny MCE)[https://www.tiny.cloud/auth/signup/]
 
 *You must run the housekeeping through a subdomain or a total seperate domain, as you will not be able to run both the housekeeping and your CMS on the exact same domain.*
 
@@ -48,6 +49,8 @@ composer install
 npm install && npm run build (for development you run: npm run dev)
 php artisan key:generate
 php artisan migrate --seed
+
+Don't forget to put your Tiny MCE API key inside the "housekeeping_settings" table
 
 If you are using the housekeeping in production, dont forget to set the:
 APP_ENV=local to APP_ENV=production
@@ -84,6 +87,8 @@ composer install
 npm install && npm run build (for development you run: npm run dev)
 php artisan key:generate
 php artisan migrate --seed
+
+Don't forget to put your Tiny MCE API key inside the "housekeeping_settings" table
 
 If you are using the housekeeping in production, dont forget to set the:
 APP_ENV=local to APP_ENV=production
