@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UserSearchFormRequest;
 use App\Models\Permission;
 use App\Models\User;
 use App\Services\RconService;
@@ -97,5 +98,15 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index', ['page' => request()->get('page', 1)])->with('success', __('The user has been deleted'));
+    }
+
+    public function search(UserSearchFormRequest $request)
+    {
+        return view('users.index', [
+            'users' => User::query()
+                ->select(['id', 'username', 'mail', 'motto', 'rank', 'look', 'online', 'ip_current', 'last_online'])
+                ->where('username', 'like', '%' . $request->input('username') . '%')
+                ->paginate(15),
+        ]);
     }
 }

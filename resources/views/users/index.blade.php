@@ -65,7 +65,7 @@
                 </div>
 
                 <div class="row">
-                    {{ $users->links() }}
+                    {{ $users->withQueryString()->links() }}
                 </div>
             </div>
         </div>

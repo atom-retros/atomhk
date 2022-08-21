@@ -105,12 +105,12 @@
                         <i class="fas fa-bars"></i>
                     </button>
 
-                    <form class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <form class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="GET" action="{{ route('users.search') }}">
                         <div class="input-group">
-                            <input class="bg-light form-control border-0 small" type="text"  placeholder="Search for a username">
+                            <input class="bg-light form-control border-0 small" type="text" name="username" placeholder="Search for a username">
 
                             <div class="input-group-append">
-                                <button class="btn btn-primary py-0" type="button">
+                                <button class="btn btn-primary py-0" type="submit">
                                     <i class="fas fa-search"></i>
                                 </button>
                             </div>
