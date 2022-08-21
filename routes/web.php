@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
     // User management
     Route::prefix('users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('users.index');
+        Route::get('/search', [UserController::class, 'search'])->name('users.search');
         Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
         Route::put('/{user}/edit', [UserController::class, 'update'])->name('users.update');
         Route::delete('/{user}/delete', [UserController::class, 'destroy'])->name('user.destroy');
