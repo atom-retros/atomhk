@@ -95,7 +95,7 @@
     </div>
 
     @push('javascript')
-        <script src="https://cdn.tiny.cloud/1/kyj9sfrhs6nbjdrlmmlv008hh6ha5jwnfoviq1329t822wj5/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script src="https://cdn.tiny.cloud/1/{{ setting('tinymce_api_key') }}/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
         <script>
             tinymce.init({

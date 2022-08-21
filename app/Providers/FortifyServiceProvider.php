@@ -38,6 +38,12 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::authenticateUsing(function (Request $request) {
             $user = User::query()->where('username', $request->input('username'))->first();
 
+            if (is_null($user)) {
+                throw ValidationException::withMessages([
+                    Fortify::username() => __('These credentials do not match our records.'),
+                ]);
+            }
+
             if (! hasPermission($user,'can_login')) {
                 throw ValidationException::withMessages([
                     Fortify::username() => __('You are not eligible to login to the housekeeping.'),

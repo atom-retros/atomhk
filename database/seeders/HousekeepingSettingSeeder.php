@@ -25,6 +25,11 @@ class HousekeepingSettingSeeder extends Seeder
                 'value' => 'https://www.habbo.com/habbo-imaging/avatarimage?figure=',
                 'comment' => 'The base url for the imager used to render avatars on the CMS',
             ],
+            [
+                'key' => 'tinymce_api_key',
+                'value' => '',
+                'comment' => 'The API key needed for the tiny mce editor',
+            ],
         ];
 
         HousekeepingSetting::query()->upsert($settings, ['key']);
