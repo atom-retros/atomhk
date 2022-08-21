@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('users.index');
         Route::get('/search', [UserController::class, 'search'])->name('users.search');
+        Route::post('/{user}/clones', [UserController::class, 'clones'])->name('users.clones');
         Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
         Route::put('/{user}/edit', [UserController::class, 'update'])->name('users.update');
         Route::delete('/{user}/delete', [UserController::class, 'destroy'])->name('user.destroy');
