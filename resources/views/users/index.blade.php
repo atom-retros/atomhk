@@ -56,6 +56,16 @@
                                                     </button>
                                                 </form>
                                             @endif
+
+                                            @if(hasPermission(auth()->user(), 'edit_user'))
+                                                <form class="ml-2" action="{{ route('users.clones', $user) }}" method="POST">
+                                                    @csrf
+
+                                                    <button class="btn btn-warning" type="submit">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>
