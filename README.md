@@ -33,10 +33,10 @@ To install Atom HK you'll need the following:
 - NPM (LTS) [Node Download](https://nodejs.org/en/download/)
 - An Arcturus Morningstar database [Database repository](https://git.krews.org/morningstar/arcturus-morningstar-base-database)
 
-It's recommended to run the housekeeping through a subdomain or a total seperate domain, as you will not be able to run both the housekeeping and your CMS on the exact same domain.
+*You must run the housekeeping through a subdomain or a total seperate domain, as you will not be able to run both the housekeeping and your CMS on the exact same domain.*
 
 After all of the above has been installed you've to do the following:
-- Open CMD and navigate into the path you want the housekeeping to be located at, and run the commands listed below
+Open CMD and navigate into the path you want the housekeeping to be located at, and run the commands listed below
 
 #### Windows
 ```
@@ -45,22 +45,33 @@ After all of the above has been installed you've to do the following:
 cd atomhk
 copy .env.example .env
 composer install 
-npm install && npm run dev (for production you run: npm run build)
+npm install && npm run build (for development you run: npm run dev)
 php artisan key:generate
 php artisan migrate --seed
 
 If you are using the housekeeping in production, dont forget to set the:
-- APP_ENV=local to APP_ENV=production
-- APP_DEBUG=true to APP_DEBUG=false
-```
-For IIS - You must link your site to the public folder of the housekeeping, Also make sure the atomhk folder is granted "Full control" for both the IUSR & the IIS_IUSRS.
+APP_ENV=local to APP_ENV=production
+APP_DEBUG=true to APP_DEBUG=false
 
-**For production**
+*You must link your site to the public folder of the CMS*
+```
+
+#### Required permissions
+Please make sure the atomhk folder is granted "Full control" for both the IUSR & the IIS_IUSRS.
+
+Here's a GIF of me doing it on a different folder: [https://gyazo.com/7d5f38525a762c1b26bbd7552ca93478](https://gyazo.com/7d5f38525a762c1b26bbd7552ca93478) the principle is the same, you just do it on the "atomhk" folder.
+
 
 #### Required extensions
 Please verify the following extensions are enabled inside your php.ini file. If they have a ";" in front of them it means that they're commented out and not enabled. Simply remove the ";" to enable them.
 ```
-- sockets
+extension=curl
+extension=fileinfo
+extension=gd
+extension=mbstring
+extension=openssl
+extension=pdo_mysql
+extension=sockets
 ```
 
 #### Linux
@@ -70,16 +81,18 @@ Please verify the following extensions are enabled inside your php.ini file. If 
 cd atomhk
 cp .env.example .env
 composer install
-npm install && npm run dev (for production you run: npm run build)
+npm install && npm run build (for development you run: npm run dev)
 php artisan key:generate
 php artisan migrate --seed
 
 If you are using the housekeeping in production, dont forget to set the:
-- APP_ENV=local to APP_ENV=production
-- APP_DEBUG=true to APP_DEBUG=false
+APP_ENV=local to APP_ENV=production
+APP_DEBUG=true to APP_DEBUG=false
+```
 
+#### Required permissions
 Grant necessary permissions to used folders. Within your atomhk directory, enter the 4 commands below.
-
+```
 sudo chown -R $USER:www-data storage
 sudo chown -R $USER:www-data bootstrap/cache
 chmod -R 775 storage
@@ -87,7 +100,6 @@ chmod -R 775 bootstrap/cache
 ```
 
 #### Required extensions
-
 Please install the following extensions by running the command below:
 ```
 sudo apt-get install -y php8.1-cli php8.1-common php8.1-mysql php8.1-zip php8.1-gd php8.1-mbstring php8.1-curl php8.1-xml php8.1-bcmath php8.1-sockets php8.1-gd php8.1-fileinfo
