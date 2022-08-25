@@ -30,69 +30,144 @@
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                        <i class="fas fa-tachometer-alt"></i>
+                <x-navigation.navigation-item :classes="request()->routeIs('dashboard') ? 'active' : ''">
+                    <a href="{{ route('dashboard') }}">
+                        <x-icons.home-icon />
                         <span>Dashboard</span>
                     </a>
-                </li>
+                </x-navigation.navigation-item>
 
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}" href="{{ route('users.index') }}">
-                        <i  class="fas fa-user"></i>
-                        <span>User Management</span>
-                    </a>
-                </li>
+                <x-navigation.navigation-section>
+                    <x-slot:header>
+                        Hotel
+                    </x-slot:header>
 
-                <li class="nav-item dropdown">
-                    <a class="dropdown-toggle nav-link {{ request()->routeIs('articles.*') ? 'active' : '' }}" data-toggle="dropdown" aria-expanded="false" href="javascript:void(0)">
-                        <i class="fa fa-newspaper-o"></i>
-                        Article Management
-                    </a>
-
-                    <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item" role="presentation" href="{{ route('articles.index') }}">
-                            All Articles
+                    <x-navigation.navigation-item :classes="request()->routeIs('users.*') ? 'active' : ''">
+                        <a href="{{ route('users.index') }}">
+                            <x-icons.users-icon />
+                            <span>User Management</span>
                         </a>
-                        <hr>
+                    </x-navigation.navigation-item>
 
-                        <a class="dropdown-item" role="presentation" href="{{ route('articles.create') }}">
-                            Create Article
+                    <x-navigation.navigation-item :classes="request()->routeIs('wordfilter.*') ? 'active' : ''">
+                        <a href="{{ route('wordfilter.index') }}">
+                            <x-icons.wordfilter-icon />
+                            <span>Wordfilter Management</span>
                         </a>
-                    </div>
-                </li>
+                    </x-navigation.navigation-item>
 
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link {{ request()->routeIs('wordfilter.*') ? 'active' : '' }}" href="{{ route('wordfilter.index') }}">
-                        <i class="fas fa-clipboard-list"></i>
-                        <span>Wordfilter Management</span>
-                    </a>
-                </li>
-
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link {{ request()->routeIs('bans.*') ? 'active' : '' }}" href="{{ route('bans.index') }}">
-                        <i class="fas fa-clipboard-list"></i>
-                        <span>Bans Management</span>
-                    </a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="dropdown-toggle nav-link {{ request()->routeIs('chatlogs.*') ? 'active' : '' }}" data-toggle="dropdown" aria-expanded="false" href="javascript:void(0)">
-                        <i class="fa fa-newspaper-o"></i>
-                        Chatlogs
-                    </a>
-
-                    <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item" role="presentation" href="{{ route('chatlogs.room') }}">
-                            Room chatlogs
+                    <x-navigation.navigation-item :classes="request()->routeIs('bans.*') ? 'active' : ''">
+                        <a href="{{ route('bans.index') }}">
+                            <x-icons.denied-icon />
+                            <span>Ban Management</span>
                         </a>
-                        <hr>
+                    </x-navigation.navigation-item>
 
-                        <a class="dropdown-item" role="presentation" href="{{ route('chatlogs.private') }}">
-                            Private chatlogs
+
+                    <x-navigation.dropdown-menu :classes="request()->routeIs('articles.*') ? 'active' : ''">
+                        <x-slot:parent>
+                            <x-icons.chat-icon />
+                            <span>Chatlogs</span>
+                        </x-slot:parent>
+
+                        <x-navigation.dropdown-child>
+                            <a href="{{ route('chatlogs.room') }}">
+                                Room chatlogs
+                            </a>
+                        </x-navigation.dropdown-child>
+
+                        <x-navigation.dropdown-child>
+                            <a href="{{ route('chatlogs.private') }}">
+                                Private chatlogs
+                            </a>
+                        </x-navigation.dropdown-child>
+                    </x-navigation.dropdown-menu>
+                </x-navigation.navigation-section>
+
+                <x-navigation.navigation-section>
+                    <x-slot:header>
+                        CMS
+                    </x-slot:header>
+
+                    <x-navigation.dropdown-menu :classes="request()->routeIs('articles.*') ? 'active' : ''">
+                        <x-slot:parent>
+                            <x-icons.article-icon classes="" />
+                            <span>Article management</span>
+                        </x-slot:parent>
+
+                        <x-navigation.dropdown-child>
+                            <a href="{{ route('articles.index') }}">
+                                All Articles
+                            </a>
+                        </x-navigation.dropdown-child>
+
+                        <x-navigation.dropdown-child>
+                            <a href="{{ route('articles.create') }}">
+                                Create Article
+                            </a>
+                        </x-navigation.dropdown-child>
+                    </x-navigation.dropdown-menu>
+                </x-navigation.navigation-section>
+
+                <x-navigation.navigation-section>
+                    <x-slot:header>
+                        Catalog
+                    </x-slot:header>
+
+                    <x-navigation.navigation-item :classes="request()->routeIs('bans.*') ? 'active' : ''">
+                        <a href="{{ route('dashboard') }}">
+                            <x-icons.table-icon />
+                            <span>Catalog pages</span>
                         </a>
-                    </div>
-                </li>
+                    </x-navigation.navigation-item>
+
+                    <x-navigation.dropdown-menu>
+                        <x-slot:parent>
+                            <x-icons.catalog-icon />
+                            <span>
+                                Catalog
+                            </span>
+                        </x-slot:parent>
+
+                        <x-navigation.dropdown-child>
+                            <a href="{{ route('articles.index') }}">
+                                Catalog items
+                            </a>
+                        </x-navigation.dropdown-child>
+
+                        <x-navigation.dropdown-child>
+                            <a href="{{ route('articles.create') }}">
+                                Items base
+                            </a>
+                        </x-navigation.dropdown-child>
+
+                        <x-navigation.dropdown-child>
+                            <a href="{{ route('articles.create') }}">
+                                Add furniture
+                            </a>
+                        </x-navigation.dropdown-child>
+                    </x-navigation.dropdown-menu>
+                </x-navigation.navigation-section>
+
+                <x-navigation.navigation-section>
+                    <x-slot:header>
+                        Emulator
+                    </x-slot:header>
+
+                    <x-navigation.navigation-item :classes="request()->routeIs('bans.*') ? 'active' : ''">
+                        <a href="{{ route('dashboard') }}">
+                            <x-icons.settings-icon/>
+                            <span>Emulator Settings</span>
+                        </a>
+                    </x-navigation.navigation-item>
+
+                    <x-navigation.navigation-item :classes="request()->routeIs('bans.*') ? 'active' : ''">
+                        <a href="{{ route('dashboard') }}">
+                            <x-icons.text-icon />
+                            <span>Emulator Text</span>
+                        </a>
+                    </x-navigation.navigation-item>
+                </x-navigation.navigation-section>
             </ul>
         </div>
     </nav>
@@ -148,7 +223,7 @@
                                     <img class="mt-4" src="https://imager.habstar.net/?figure={{ auth()->user()->look }}&direction=2&headonly=1&head_direction=2&gesture=sml" alt="Profile pic" />
                                 </a>
 
-                                <div  class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
+                                <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
                                     <a class="dropdown-item" role="presentation" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         {{ __('Logout') }}
