@@ -20,11 +20,13 @@
                                     <div class="form-row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="title">
-                                                    <strong>Title</strong>
-                                                </label>
+                                                <div class="form-group">
+                                                    <label for="title">
+                                                        <strong>Title</strong>
+                                                    </label>
 
-                                                <input class="form-control" type="text" name="title" placeholder="{{ __('Enter an article title') }}">
+                                                    <x-form.input name="title" placeholder="Enter a article title"/>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -34,7 +36,7 @@
                                                     <strong>Short Story</strong>
                                                 </label>
 
-                                                <input class="form-control" type="text" name="short_story" placeholder="Enter the article short story">
+                                                <x-form.input name="short_story" placeholder="Enter the article short story"/>
                                             </div>
                                         </div>
                                     </div>
