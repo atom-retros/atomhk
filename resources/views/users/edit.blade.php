@@ -25,7 +25,7 @@
                                                     <strong>Username</strong>
                                                 </label>
 
-                                                <input id="username" name="username" type="text" value="{{ $user->username }}" class="form-control" placeholder="Username">
+                                                <x-form.input name="username" value="{{ $user->username }}" placeholder="Enter a username"/>
                                             </div>
                                         </div>
 
@@ -35,7 +35,7 @@
                                                     <strong>Email</strong>
                                                 </label>
 
-                                                <input id="mail" name="mail" type="email" value="{{ $user->mail }}" class="form-control" placeholder="Username">
+                                                <x-form.input name="mail" type="email" value="{{ $user->mail }}" placeholder="Enter an email"/>
                                             </div>
                                         </div>
 
@@ -45,7 +45,7 @@
                                                     <strong>Motto</strong>
                                                 </label>
 
-                                                <input id="motto" name="motto" type="text" value="{{ $user->motto }}" class="form-control" placeholder="Motto">
+                                                <x-form.input name="motto" value="{{ $user->motto }}" placeholder="Enter a motto"/>
                                             </div>
                                         </div>
 
@@ -73,7 +73,7 @@
                                                     <strong>Credits</strong>
                                                 </label>
 
-                                                <input id="credits" name="credits" type="number" value="{{ $user->credits }}" class="form-control" placeholder="Username">
+                                                <x-form.input name="credits" type="number" value="{{ $user->credits }}" placeholder="Enter a credit amount"/>
                                             </div>
                                         </div>
 
@@ -83,7 +83,7 @@
                                                     <strong>Duckets</strong>
                                                 </label>
 
-                                                <input id="duckets" name="duckets" type="number" value="{{ $user->currency('duckets') }}" class="form-control" placeholder="Username">
+                                                <x-form.input name="duckets" type="number" value="{{ $user->currency('duckets') }}" placeholder="Enter a ducket amount"/>
                                             </div>
                                         </div>
 
@@ -93,7 +93,7 @@
                                                     <strong>Diamonds</strong>
                                                 </label>
 
-                                                <input id="diamonds" name="diamonds" type="number" value="{{ $user->currency('diamonds') }}" class="form-control" placeholder="Diamonds">
+                                                <x-form.input name="diamonds" type="number" value="{{ $user->currency('diamonds') }}" placeholder="Enter a diamond amount"/>
                                             </div>
                                         </div>
 
@@ -103,15 +103,15 @@
                                                     <strong>Points</strong>
                                                 </label>
 
-                                                <input id="points" name="points" type="number" value="{{ $user->currency('points') }}" class="form-control" placeholder="Points">
+                                                <x-form.input name="points" type="number" value="{{ $user->currency('points') }}" placeholder="Enter a point amount"/>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <button class="btn btn-primary btn-sm" type="submit">
-                                            Save
-                                        </button>
+                                        <x-elements.primary-button placement="right">
+                                            Update user
+                                        </x-elements.primary-button>
                                     </div>
                                 </form>
                             </div>

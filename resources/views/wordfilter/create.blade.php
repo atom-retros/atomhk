@@ -20,21 +20,22 @@
                                     <div class="form-row">
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="title">
+                                                <label for="key">
                                                     <strong>Word</strong>
                                                 </label>
 
-                                                <input class="form-control" type="text" name="key" placeholder="{{ __('Enter a word') }}">
+                                                <x-form.input name="key" type="text" placeholder="{{ __('Enter a word') }}"/>
                                             </div>
+
                                         </div>
 
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="short_story">
+                                                <label for="replacement">
                                                     <strong>Replacement</strong>
                                                 </label>
 
-                                                <input class="form-control" type="text" name="replacement" placeholder="Enter a replacement">
+                                                <x-form.input name="replacement" type="text" placeholder="{{ __('Enter a replacement') }}"/>
                                             </div>
                                         </div>
 
@@ -79,9 +80,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <button class="btn btn-primary btn-sm" type="submit">
+                                        <x-elements.primary-button placement="right">
                                             Add word
-                                        </button>
+                                        </x-elements.primary-button>
                                     </div>
                                 </form>
                             </div>

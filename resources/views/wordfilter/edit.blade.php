@@ -21,21 +21,21 @@
                                     <div class="form-row">
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="title">
+                                                <label for="key">
                                                     <strong>Word</strong>
                                                 </label>
 
-                                                <input class="form-control" type="text" name="key" value="{{ $word->key }}" placeholder="{{ __('Enter a word') }}">
+                                                <x-form.input name="key" type="text" value="{{ $word->key }}" placeholder="{{ __('Enter a word') }}"/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="short_story">
-                                                    <strong>Replacement</strong>
+                                                <label for="replacement">
+                                                    <strong>Word</strong>
                                                 </label>
 
-                                                <input class="form-control" type="text" name="replacement" value="{{ $word->replacement }}" placeholder="Enter a replacement">
+                                                <x-form.input name="replacement" type="text" value="{{ $word->replacement }}" placeholder="{{ __('Enter a replacement') }}"/>
                                             </div>
                                         </div>
 
@@ -80,9 +80,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <button class="btn btn-primary btn-sm" type="submit">
+                                        <x-elements.primary-button placement="right">
                                             Update word
-                                        </button>
+                                        </x-elements.primary-button>
                                     </div>
                                 </form>
                             </div>
