@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BansController;
+use App\Http\Controllers\CatalogPagesController;
 use App\Http\Controllers\ChatlogsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PrivateChatlogsController;
@@ -65,5 +66,11 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/private', [PrivateChatlogsController::class, 'index'])->name('chatlogs.private');
         Route::get('/private/filter', [PrivateChatlogsController::class, 'search'])->name('chatlogs.private.filter');
+    });
+
+    Route::prefix('catalog')->group(function () {
+        Route::get('/pages', [CatalogPagesController::class, 'index'])->name('catalog-pages.index');
+        Route::get('/pages/create', [CatalogPagesController::class, 'create'])->name('catalog-pages.create');
+        Route::post('/pages/create', [CatalogPagesController::class, 'store'])->name('catalog-pages.store');
     });
 });

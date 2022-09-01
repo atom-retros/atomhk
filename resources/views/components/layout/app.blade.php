@@ -114,8 +114,8 @@
                         Catalog
                     </x-slot:header>
 
-                    <x-navigation.navigation-item :classes="request()->routeIs('bans.*') ? 'active' : ''">
-                        <a href="{{ route('dashboard') }}">
+                    <x-navigation.navigation-item :classes="request()->routeIs('catalog.*') ? 'active' : ''">
+                        <a href="{{ route('catalog-pages.index') }}">
                             <x-icons.table-icon />
                             <span>Catalog pages</span>
                         </a>
