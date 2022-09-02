@@ -12,20 +12,20 @@
             </div>
 
             <div class="input-group">
-                <form action="{{ route('chatlogs.filter') }}" method="GET">
+                <form action="{{ route('catalog-page.search') }}" method="GET">
                     <div class="d-block d-md-flex">
                         <div class="col-12 col-lg-4">
                             <select class="form-control" name="sort_by">
-                                <option value="word">Page IDs</option>
-                                <option value="users">Parent IDs</option>
-                                <option value="rooms">Captions</option>
-                                <option value="rooms">Page layouts</option>
+                                <option value="page_ids">Page IDs</option>
+                                <option value="parent_ids">Parent IDs</option>
+                                <option value="captions">Captions</option>
+                                <option value="page_layouts">Page layouts</option>
                             </select>
                         </div>
 
                         <div class="input-group col-12 col-lg-10">
                             <div class="form-outline">
-                                <input style="width: 300px;" type="search" name="search_input" placeholder="Enter your search criteria" class="form-control">
+                                <input style="width: 300px;" type="search" name="criteria" placeholder="Enter your search criteria" class="form-control">
                             </div>
 
                             <button type="submit" class="ml-2 btn btn-primary">
@@ -79,7 +79,7 @@
 
                                     <td>
                                         <div class="btn-group" role="group">
-                                            @if(hasPermission(auth()->user(), 'edit_user'))
+                                            @if(hasPermission(auth()->user(), 'manage_catalog_pages'))
                                                 <a href="{{ route('catalog-pages.edit', $page) }}">
                                                     <button class="btn btn-primary" type="button">
                                                         <i class="fa fa-pencil"></i>
@@ -87,23 +87,13 @@
                                                 </a>
                                             @endif
 
-                                            @if(hasPermission(auth()->user(), 'delete_user'))
-                                                <form class="ml-2" action="#" method="POST">
+                                            @if(hasPermission(auth()->user(), 'delete_catalog_pages'))
+                                                <form class="ml-2" action="{{ route('catalog-pages.delete', $page) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
 
                                                     <button class="btn btn-danger" type="submit">
                                                         <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </form>
-                                            @endif
-
-                                            @if(hasPermission(auth()->user(), 'edit_user'))
-                                                <form class="ml-2" action="#}" method="POST">
-                                                    @csrf
-
-                                                    <button class="btn btn-warning" type="submit">
-                                                        <x-icons.users-icon />
                                                     </button>
                                                 </form>
                                             @endif
