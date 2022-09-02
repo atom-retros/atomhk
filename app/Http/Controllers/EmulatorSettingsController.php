@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EmulatorSettingsRequest;
 use App\Models\EmulatorSetting;
+use App\Services\RconService;
+use Illuminate\Support\Facades\Auth;
 
 class EmulatorSettingsController extends Controller
 {
@@ -63,5 +65,16 @@ class EmulatorSettingsController extends Controller
         $setting->delete();
 
         return redirect()->back()->with('success', 'The emulator setting has been removed!');
+    }
+
+    public function updateRcon(RconService $rcon)
+    {
+        if (!hasPermission(Auth::user(), 'manage_emulator_settings')) {
+            abort(403);
+        }
+
+        $rcon->updateConfig(Auth::user(), 'update_config');
+
+        return redirect()->back()->with('success', 'Rcon fired! the emulator settings is now live on the hotel.');
     }
 }

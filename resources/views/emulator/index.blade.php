@@ -5,10 +5,16 @@
         <div class="d-flex justify-content-between">
             <h3 class="text-dark mb-4">Emulator settings</h3>
 
-            @if(hasPermission(auth()->user(), 'write_article'))
-                <a href="{{ route('emulator-settings.create') }}">
-                    <button class="btn btn-primary d-flex align-self-start">{{ __('Create emulator setting') }}</button>
-                </a>
+            @if(hasPermission(auth()->user(), 'manage_emulator_settings'))
+                <div class="d-flex" style="gap: 10px;">
+                    <a href="{{ route('emulator-settings.create') }}">
+                        <button class="btn btn-primary d-flex align-self-start">{{ __('Create emulator setting') }}</button>
+                    </a>
+
+                    <a href="{{ route('emulator-settings.update.rcon') }}">
+                        <button class="btn btn-danger d-flex align-self-start">{{ __('Update settings (RCON)') }}</button>
+                    </a>
+                </div>
             @endif
         </div>
 
@@ -37,7 +43,7 @@
 
                                     <td>
                                         <div class="btn-group" role="group">
-                                            @if(hasPermission(auth()->user(), 'manage_wordfilter'))
+                                            @if(hasPermission(auth()->user(), 'manage_emulator_settings'))
                                                 <a href="{{ route('emulator-settings.edit', $setting->setting) }}">
                                                     <button class="btn btn-primary" type="button">
                                                         <i class="fa fa-pencil"></i>
@@ -45,7 +51,7 @@
                                                 </a>
                                             @endif
 
-                                            @if(hasPermission(auth()->user(), 'manage_wordfilter'))
+                                            @if(hasPermission(auth()->user(), 'manage_emulator_settings'))
                                                 <form class="ml-2" id="deleteSettingForm" action="{{ route('emulator-settings.delete', $setting->setting) }}" method="POST" onSubmit="event.preventDefault(); return confirmDeleteSetting()">
                                                     @method('DELETE')
                                                     @csrf
