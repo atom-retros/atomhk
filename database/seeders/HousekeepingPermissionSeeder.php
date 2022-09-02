@@ -70,6 +70,11 @@ class HousekeepingPermissionSeeder extends Seeder
                 'min_rank' => 6,
                 'description' => 'The minimum rank required before being able to delete catalog pages',
             ],
+            [
+                'permission' => 'manage_emulator_settings',
+                'min_rank' => 6,
+                'description' => 'The minimum rank required before being able to manage emulator settings',
+            ],
         ];
 
         HousekeepingPermission::query()->upsert($permissions, ['permission']);

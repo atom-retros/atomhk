@@ -6,6 +6,7 @@ use App\Http\Controllers\CatalogPagesController;
 use App\Http\Controllers\CatalogPageSearchController;
 use App\Http\Controllers\ChatlogsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmulatorSettingsController;
 use App\Http\Controllers\PrivateChatlogsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WordfilterController;
@@ -69,6 +70,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/private/filter', [PrivateChatlogsController::class, 'search'])->name('chatlogs.private.filter');
     });
 
+    // Catalog routes
     Route::prefix('catalog')->group(function () {
         Route::get('/pages', [CatalogPagesController::class, 'index'])->name('catalog-pages.index');
         Route::get('/pages/create', [CatalogPagesController::class, 'create'])->name('catalog-pages.create');
@@ -79,5 +81,15 @@ Route::middleware('auth')->group(function () {
 
         // Page search
         Route::get('/search', [CatalogPageSearchController::class, 'search'])->name('catalog-page.search');
+    });
+
+    // Settings routes
+    Route::prefix('settings')->group(function () {
+        Route::get('/emulator', [EmulatorSettingsController::class, 'index'])->name('emulator-settings.index');
+        Route::get('/emulator/create', [EmulatorSettingsController::class, 'create'])->name('emulator-settings.create');
+        Route::post('/emulator/create', [EmulatorSettingsController::class, 'store'])->name('emulator-settings.store');
+        Route::get('/emulator/{setting}/edit', [EmulatorSettingsController::class, 'edit'])->name('emulator-settings.edit');
+        Route::put('/emulator/{setting}/edit', [EmulatorSettingsController::class, 'update'])->name('emulator-settings.update');
+        Route::delete('/emulator/{setting}/delete', [EmulatorSettingsController::class, 'destroy'])->name('emulator-settings.delete');
     });
 });
