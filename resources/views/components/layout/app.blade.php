@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/tinymce.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/untitled.css') }}">
     <script src="https://cdn.tiny.cloud/1/[APIKEYHERE]/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -114,8 +115,8 @@
                         Catalog
                     </x-slot:header>
 
-                    <x-navigation.navigation-item :classes="request()->routeIs('bans.*') ? 'active' : ''">
-                        <a href="{{ route('dashboard') }}">
+                    <x-navigation.navigation-item :classes="request()->routeIs('catalog.*') ? 'active' : ''">
+                        <a href="{{ route('catalog-pages.index') }}">
                             <x-icons.table-icon />
                             <span>Catalog pages</span>
                         </a>
