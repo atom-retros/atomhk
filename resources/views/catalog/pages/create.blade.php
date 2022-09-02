@@ -231,10 +231,6 @@
                     /<\?php.*?\?>/g
                 ],
             });
-
-            function changeImage(image) {
-                $('#article-img').css("background", "url('/assets/images/articles/" + image + "') center");
-            }
         </script>
     @endpush
 </x-layout.app>
