@@ -88,7 +88,7 @@
                                             @endif
 
                                             @if(hasPermission(auth()->user(), 'delete_catalog_pages'))
-                                                <form class="ml-2" action="{{ route('catalog-pages.delete', $page) }}" method="POST">
+                                                <form class="ml-2" id="deletePageForm" action="{{ route('catalog-pages.delete', $page) }}" method="POST" onSubmit="event.preventDefault(); return confirmDeletePage()">
                                                     @method('DELETE')
                                                     @csrf
 
@@ -111,4 +111,28 @@
             </div>
         </div>
     </div>
+
+    @push('javascript')
+        <script>
+            function confirmDeletePage(e) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    console.log(result.isConfirmed)
+                    if (result.isConfirmed) {
+                        document.querySelector('#deletePageForm').submit();
+                    }
+                })
+
+                e.preventDefault();
+            }
+
+        </script>
+    @endpush
 </x-layout.app>

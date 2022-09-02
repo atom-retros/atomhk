@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/tinymce.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/untitled.css') }}">
     <script src="https://cdn.tiny.cloud/1/[APIKEYHERE]/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
