@@ -80,7 +80,7 @@
                                     <td>
                                         <div class="btn-group" role="group">
                                             @if(hasPermission(auth()->user(), 'edit_user'))
-                                                <a href="#">
+                                                <a href="{{ route('catalog-pages.edit', $page) }}">
                                                     <button class="btn btn-primary" type="button">
                                                         <i class="fa fa-pencil"></i>
                                                     </button>

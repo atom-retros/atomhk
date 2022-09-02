@@ -72,5 +72,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/pages', [CatalogPagesController::class, 'index'])->name('catalog-pages.index');
         Route::get('/pages/create', [CatalogPagesController::class, 'create'])->name('catalog-pages.create');
         Route::post('/pages/create', [CatalogPagesController::class, 'store'])->name('catalog-pages.store');
+        Route::get('/pages/{catalogPage}/edit', [CatalogPagesController::class, 'edit'])->name('catalog-pages.edit');
+        Route::put('/pages/{catalogPage}/edit', [CatalogPagesController::class, 'update'])->name('catalog-pages.update');
+        Route::delete('/pages/{page}/delete', [CatalogPagesController::class, 'destroy'])->name('catalog-pages.delete');
     });
 });

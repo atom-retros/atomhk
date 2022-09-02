@@ -19,11 +19,11 @@ class CatalogPageRequest extends FormRequest
             'icon_image' => ['required', 'numeric'],
             'min_rank' => ['required', 'numeric'],
             'order_num' => ['required', 'numeric'],
-            'page_headline' => ['required', 'string', 'max:1024'],
-            'page_teaser' => ['required', 'string', 'max:64'],
-            'page_text1' => ['required', 'string', 'max:2048'],
-            'page_text2' => ['required', 'string'],
-            'page_text_details' => ['required', 'string'],
+            'page_headline' => ['nullable', 'string', 'max:1024'],
+            'page_teaser' => ['nullable', 'string', 'max:64'],
+            'page_text1' => ['nullable', 'string', 'max:2048'],
+            'page_text2' => ['nullable', 'string'],
+            'page_text_details' => ['nullable', 'string'],
         ];
     }
 }

@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class CatalogPagesController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(CatalogPage::class, 'catalogPage');
+    }
+
     public function index()
     {
         return view('catalog.pages.index', [
@@ -41,19 +46,38 @@ class CatalogPagesController extends Controller
         return to_route('catalog-pages.index')->with('success', 'The catalog page has been created!');
     }
 
-    public function show(CatalogPage $catalogPage)
-    {
-    }
-
     public function edit(CatalogPage $catalogPage)
     {
+        return view('catalog.pages.edit', [
+            'page' => $catalogPage
+        ]);
     }
 
-    public function update(Request $request, CatalogPage $catalogPage)
+    public function update(CatalogPageRequest $request, CatalogPage $catalogPage)
     {
+        $catalogPage->update([
+            'parent_id' => $request->input('parent_id'),
+            'caption' => $request->input('caption'),
+            'visible' => $request->input('visible'),
+            'enabled' => $request->input('enabled'),
+            'page_layout' => $request->input('page_layout'),
+            'icon_image' => $request->input('icon_image'),
+            'min_rank' => $request->input('min_rank'),
+            'order_num' => $request->input('order_num'),
+            'page_headline' => $request->input('page_headline') ?? '',
+            'page_teaser' => $request->input('page_teaser') ?? '',
+            'page_text1' => $request->input('page_text1'),
+            'page_text2' => $request->input('page_text2'),
+            'page_text_details' => clean($request->input('page_text_details')),
+        ]);
+
+        return to_route('catalog-pages.index')->with('success', 'The catalog page has been updated!');
     }
 
     public function destroy(CatalogPage $catalogPage)
     {
+        $catalogPage->delete();
+
+        return redirect()->back()->with('success', 'The catalog page has been removed!');
     }
 }
