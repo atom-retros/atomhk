@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CatalogPage;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -10,6 +11,10 @@ class CatalogPageSearchController extends Controller
 {
     public function search(Request $request): View
     {
+        if (!hasPermission(Auth::user(), 'manage_catalog_pages')) {
+            abort(401);
+        }
+
         $criteria = addslashes($request->get('criteria'));
         $pages = match (addslashes($request->get('sort_by'))) {
             'parent_ids' => $this->parentIds($criteria),
