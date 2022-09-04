@@ -73,8 +73,8 @@ class EmulatorSettingsController extends Controller
             abort(403);
         }
 
-        $rcon->updateConfig(Auth::user(), 'update_config');
+        $rcon->updateConfig(Auth::user(), ':update_config');
 
-        return redirect()->back()->with('success', 'Rcon fired! the emulator settings is now live on the hotel.');
+        return redirect()->back()->with('success', 'RCON executed! If you have the ":update_config" permission in-game, the emulator settings changes will now be live on the hotel.');
     }
 }
