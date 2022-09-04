@@ -6,6 +6,7 @@ use App\Http\Requests\EmulatorSettingsRequest;
 use App\Models\EmulatorSetting;
 use App\Services\RconService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class EmulatorSettingsController extends Controller
 {
@@ -65,6 +66,18 @@ class EmulatorSettingsController extends Controller
         $setting->delete();
 
         return redirect()->back()->with('success', 'The emulator setting has been removed!');
+    }
+
+    public function search(Request $request)
+    {
+        $criteria = addslashes($request->get('criteria'));
+
+        return view('emulator.index', [
+            'settings' => EmulatorSetting::query()
+                ->select('key as setting', 'value')
+                ->where('key', 'like', '%' . $criteria . '%')
+                ->paginate(15),
+        ]);
     }
 
     public function updateRcon(RconService $rcon)

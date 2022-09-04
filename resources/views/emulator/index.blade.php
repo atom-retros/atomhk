@@ -2,20 +2,44 @@
     @push('title', 'Emulator settings')
 
     <div class="container-fluid">
-        <div class="d-flex justify-content-between">
-            <h3 class="text-dark mb-4">Emulator settings</h3>
+        <h3 class="text-dark mb-4">Emulator settings</h3>
 
-            @if(hasPermission(auth()->user(), 'manage_emulator_settings'))
-                <div class="d-flex" style="gap: 10px;">
-                    <a href="{{ route('emulator-settings.create') }}">
-                        <button class="btn btn-primary d-flex align-self-start">{{ __('Create emulator setting') }}</button>
-                    </a>
+        <div class="row mb-4">
+            <div class="ml-2" data-toggle="tooltip" data-placement="top" title="Enter part of the key you want to look for and it'll find every key matching your criteria.">
+                <i class="far fa-question-circle"></i>
+            </div>
 
-                    <a href="{{ route('emulator-settings.update.rcon') }}">
-                        <button class="btn btn-danger d-flex align-self-start">{{ __('Update settings (RCON)') }}</button>
-                    </a>
-                </div>
-            @endif
+           <div class="d-flex justify-content-between w-100">
+               <div class="input-group">
+                   <form action="{{ route('emulator-settings.search') }}" method="GET">
+                       <div class="input-group col-12 col-lg-6">
+                           <div class="d-flex">
+                               <div class="form-outline">
+                                   <input style="width: 300px;" type="search" name="criteria" placeholder="Enter your search criteria" class="form-control">
+                               </div>
+
+                               <button type="submit" class="ml-2 btn btn-primary">
+                                   <i class="fas fa-search"></i>
+                               </button>
+                           </div>
+                       </div>
+                   </form>
+               </div>
+
+              <div class="col-12 col-lg-6 d-flex justify-content-end">
+                  @if(hasPermission(auth()->user(), 'manage_emulator_settings'))
+                      <div class="d-flex" style="gap: 10px;">
+                          <a href="{{ route('emulator-settings.create') }}">
+                              <button class="btn btn-primary d-flex align-self-start">{{ __('Create emulator setting') }}</button>
+                          </a>
+
+                          <a href="{{ route('emulator-settings.update.rcon') }}">
+                              <button class="btn btn-danger d-flex align-self-start">{{ __('Update settings (RCON)') }}</button>
+                          </a>
+                      </div>
+                  @endif
+              </div>
+           </div>
         </div>
 
         <x-messages.flash-messages />
@@ -39,8 +63,6 @@
                                 <tr>
                                     <td>{{ $setting->setting }}</td>
                                     <td>{{ $setting->value }}</td>
-
-
                                     <td>
                                         <div class="btn-group" role="group">
                                             @if(hasPermission(auth()->user(), 'manage_emulator_settings'))

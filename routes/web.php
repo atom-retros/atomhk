@@ -88,6 +88,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/emulator', [EmulatorSettingsController::class, 'index'])->name('emulator-settings.index');
         Route::get('/emulator/create', [EmulatorSettingsController::class, 'create'])->name('emulator-settings.create');
         Route::post('/emulator/create', [EmulatorSettingsController::class, 'store'])->name('emulator-settings.store');
+        Route::get('/emulator/search', [EmulatorSettingsController::class, 'search'])->name('emulator-settings.search');
         Route::get('/emulator/update/rcon', [EmulatorSettingsController::class, 'updateRcon'])->name('emulator-settings.update.rcon');
         Route::get('/emulator/{setting}/edit', [EmulatorSettingsController::class, 'edit'])->name('emulator-settings.edit');
         Route::put('/emulator/{setting}/edit', [EmulatorSettingsController::class, 'update'])->name('emulator-settings.update');
