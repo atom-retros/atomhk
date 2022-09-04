@@ -147,4 +147,12 @@ class RconService
             'room_id' => $roomId,
         ]);
     }
+
+    public function updateConfig(User $user, string $command)
+    {
+        return $this->sendPacket('executecommand', [
+            'user_id' => $user->id,
+            'command' => $command,
+        ]);
+    }
 }

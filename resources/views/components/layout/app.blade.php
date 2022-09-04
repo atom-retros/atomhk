@@ -155,8 +155,8 @@
                         Emulator
                     </x-slot:header>
 
-                    <x-navigation.navigation-item :classes="request()->routeIs('bans.*') ? 'active' : ''">
-                        <a href="{{ route('dashboard') }}">
+                    <x-navigation.navigation-item :classes="request()->routeIs('emulator-settings.*') ? 'active' : ''">
+                        <a href="{{ route('emulator-settings.index') }}">
                             <x-icons.settings-icon/>
                             <span>Emulator Settings</span>
                         </a>
