@@ -1,6 +1,10 @@
 <div align="center">
-<img src="https://i.imgur.com/9ePNdJ4.png" alt="Atom HK"/>
+<a href="https://discord.gg/rX3aShUHdg" target="_blank">
+    <img src="https://i.imgur.com/9ePNdJ4.png" alt="Atom HK"/><br>
+    Join the official Atom CMS Discord server
+</a>
 </div>
+
 
 ### What is Atom HK?
 Atom HK is a standalone Habbo retro housekeeping, aiming to provide an easy and solid experience for you and your staff to manage various aspects of your hotel. It offers an easy development experience thanks to the use of Laravel & Bootstrap.
@@ -24,7 +28,7 @@ If you are new to Laravel, then theres luckily tons of resources online to help 
 Atom HK was made to bring the retro community a solid base to build a housekeeping from. As previously mentioned Atom HK is a standalone housekeeping, allowing you to use it on any CMS with little to no edits.
 
 ### CMS Support
-Atom HK can be used for any CMS you'd like, all you have to do is modifying to match your database structure. Out of the box Atom HK will support Atom CMS, which you can find here: [https://github.com/ObjectRetros/atomcms](https://github.com/ObjectRetros/atomcms)
+Atom HK can be used for any CMS you'd like, all you have to do is modifying it a little bit to match your emulator / CMS database structure. Out of the box Atom HK will support Atom CMS, which you can find here: [https://github.com/ObjectRetros/atomcms](https://github.com/ObjectRetros/atomcms)
 
 ### Setup guide
 To install Atom HK you'll need the following:
@@ -34,9 +38,9 @@ To install Atom HK you'll need the following:
 - An Arcturus Morningstar database [Database repository](https://git.krews.org/morningstar/arcturus-morningstar-base-database)
 - A free API key from (Tiny MCE)[https://www.tiny.cloud/auth/signup/]
 
-*You must run the housekeeping through a subdomain or a total seperate domain, as you will not be able to run both the housekeeping and your CMS on the exact same domain.*
+*You must run the housekeeping through a subdomain or a total seperate domain, as you will not be able to run both the housekeeping and your CMS on the exact same domain name.*
 
-After all of the above has been installed you've to do the following:
+After all of the above has been fulfilled you have to do the following:
 Open CMD and navigate into the path you want the housekeeping to be located at, and run the commands listed below
 
 #### Windows
@@ -112,6 +116,12 @@ sudo apt-get install -y php8.1-cli php8.1-common php8.1-mysql php8.1-zip php8.1-
 
 For NGINX you can copy the config from here: [Deploy a site on nginx](https://laravel.com/docs/9.x/deployment#nginx
 
+#### Setup your own hotel from scatch:
+Have you always wanted to setup your own hotel from scratch, but are unsure how? Then  you can follow my **three** parts series on DevBest which will take you through any step necessary to get everything up and running.
+
+- Part 1: [https://devbest.com/threads/how-to-set-up-a-retro-in-2022-iis-nitro-html5-part-1.92532/](https://devbest.com/threads/how-to-set-up-a-retro-in-2022-iis-nitro-html5-part-1.92532/)
+- Part 2: [https://devbest.com/threads/how-to-set-up-a-retro-in-2022-iis-nitro-html5-part-2.92533/](https://devbest.com/threads/how-to-set-up-a-retro-in-2022-iis-nitro-html5-part-2.92533/)
+- Part 3: [https://devbest.com/threads/how-to-set-up-a-retro-in-2022-iis-nitro-html5-part-3.92543/](https://devbest.com/threads/how-to-set-up-a-retro-in-2022-iis-nitro-html5-part-3.92543/)
 
 #### Credits
 - Object - Creating the housekeeping
