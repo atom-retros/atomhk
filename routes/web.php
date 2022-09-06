@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [WordfilterController::class, 'index'])->name('wordfilter.index');
         Route::get('/create', [WordfilterController::class, 'create'])->name('wordfilter.create');
         Route::post('/create', [WordfilterController::class, 'store'])->name('wordfilter.store');
+        Route::post('/update/rcon', [WordfilterController::class, 'updateFilterRcon'])->name('wordfilter.update-rcon');
         Route::get('/{key}/edit', [WordfilterController::class, 'edit'])->name('wordfilter.edit');
         Route::put('/{key}/edit', [WordfilterController::class, 'update'])->name('wordfilter.update');
         Route::delete('/{key}/delete', [WordfilterController::class, 'destroy'])->name('wordfilter.destroy');

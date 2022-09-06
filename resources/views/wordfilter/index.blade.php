@@ -3,12 +3,24 @@
 
     <div class="container-fluid">
         <div class="d-flex justify-content-between">
-            <h3 class="text-dark mb-4">Wordfilter Management</h3>
+            <h3 class="text-dark mb-4">{{ __('Wordfilter Management') }}</h3>
 
-            @if(hasPermission(auth()->user(), 'write_article'))
-                <a href="{{ route('wordfilter.create') }}">
-                    <button class="btn btn-primary d-flex align-self-start">{{ __('Create filter') }}</button>
-                </a>
+            @if(hasPermission(auth()->user(), 'manage_wordfilter'))
+                <div class="d-flex" style="gap: 10px;">
+                    <a href="{{ route('wordfilter.create') }}">
+                        <x-elements.primary-button>
+                            {{ __('Add word') }}
+                        </x-elements.primary-button>
+                    </a>
+
+                    <form action="{{ route('wordfilter.update-rcon') }}" method="POST">
+                        @csrf
+
+                        <x-elements.danger-button>
+                            {{ __('Update wordfilter (RCON)') }}
+                        </x-elements.danger-button>
+                    </form>
+                </div>
             @endif
         </div>
 
@@ -16,19 +28,20 @@
 
         <div class="card shadow">
             <div class="card-header py-3">
-                <p class="text-primary m-0 font-weight-bold">Wordfilter list</p>
+                <p class="text-primary m-0 font-weight-bold">{{ __('Wordfilter list') }}</p>
             </div>
+
             <div class="card-body">
                 <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
                     <table class="table my-0" id="dataTable">
                         <thead>
                         <tr>
-                            <th>Word</th>
-                            <th>Replacement</th>
-                            <th>Hide</th>
-                            <th>Report</th>
-                            <th>Mute</th>
-                            <th>Manage</th>
+                            <th>{{ __('Word') }}</th>
+                            <th>{{ __('Replacement') }}</th>
+                            <th>{{ __('Hide') }}</th>
+                            <th>{{ __('Report') }}</th>
+                            <th>{{ __('Mute') }}</th>
+                            <th>{{ __('Manage') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -36,17 +49,17 @@
                                 <tr>
                                     <td>{{ $word->key }}</td>
                                     <td>{{ $word->replacement }}</td>
-                                    <td>{{ $word->hide ? 'Yes' : 'No' }}</td>
-                                    <td>{{ $word->report ? 'Yes' : 'No' }}</td>
-                                    <td>{{ $word->mute ? 'Yes' : 'No' }}</td>
+                                    <td>{{ $word->hide ? __('Yes') : __('No') }}</td>
+                                    <td>{{ $word->report ? __('Yes') : __('No') }}</td>
+                                    <td>{{ $word->mute ? __('Yes') : __('No') }}</td>
 
                                     <td>
                                         <div class="btn-group" role="group">
                                             @if(hasPermission(auth()->user(), 'manage_wordfilter'))
                                                 <a href="{{ route('wordfilter.edit', $word->key) }}">
-                                                    <button class="btn btn-primary" type="button">
+                                                    <x-elements.primary-button type="button">
                                                         <i class="fa fa-pencil"></i>
-                                                    </button>
+                                                    </x-elements.primary-button>
                                                 </a>
                                             @endif
 
@@ -55,9 +68,9 @@
                                                     @method('DELETE')
                                                     @csrf
 
-                                                    <button class="btn btn-danger" type="submit">
+                                                    <x-elements.danger-button>
                                                         <i class="fa fa-trash"></i>
-                                                    </button>
+                                                    </x-elements.danger-button>
                                                 </form>
                                             @endif
                                         </div>
@@ -69,7 +82,7 @@
                 </div>
 
                 <div class="row">
-                    {{ $words->links() }}
+                    {{ $words->withQueryString()->links() }}
                 </div>
             </div>
         </div>
