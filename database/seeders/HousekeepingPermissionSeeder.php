@@ -75,8 +75,19 @@ class HousekeepingPermissionSeeder extends Seeder
                 'min_rank' => 6,
                 'description' => 'The minimum rank required before being able to manage emulator settings',
             ],
+            [
+                'permission' => 'manage_emulator_texts',
+                'min_rank' => 6,
+                'description' => 'The minimum rank required before being able to manage emulator texts',
+            ],
         ];
 
-        HousekeepingPermission::query()->upsert($permissions, ['permission']);
+        foreach ($permissions as $permission) {
+            HousekeepingPermission::query()->firstOrCreate(['permission' => $permission['permission']], [
+                'permission' => $permission['permission'],
+                'min_rank' => $permission['min_rank'],
+                'description' => $permission['description'],
+            ]);
+        }
     }
 }

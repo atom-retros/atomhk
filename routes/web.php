@@ -7,6 +7,7 @@ use App\Http\Controllers\CatalogPageSearchController;
 use App\Http\Controllers\ChatlogsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmulatorSettingsController;
+use App\Http\Controllers\EmulatorTextsController;
 use App\Http\Controllers\PrivateChatlogsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WordfilterController;
@@ -94,5 +95,17 @@ Route::middleware('auth')->group(function () {
         Route::get('/emulator/{setting}/edit', [EmulatorSettingsController::class, 'edit'])->name('emulator-settings.edit');
         Route::put('/emulator/{setting}/edit', [EmulatorSettingsController::class, 'update'])->name('emulator-settings.update');
         Route::delete('/emulator/{setting}/delete', [EmulatorSettingsController::class, 'destroy'])->name('emulator-settings.delete');
+    });
+
+    // Emulator routes
+    Route::prefix('emulator')->group(function () {
+        Route::get('/texts', [EmulatorTextsController::class, 'index'])->name('emulator-texts.index');
+        Route::get('/texts/create', [EmulatorTextsController::class, 'create'])->name('emulator-texts.create');
+        Route::post('/texts/create', [EmulatorTextsController::class, 'store'])->name('emulator-texts.store');
+        Route::get('/texts/search', [EmulatorTextsController::class, 'search'])->name('emulator-texts.search');
+        Route::post('/texts/update/rcon', [EmulatorTextsController::class, 'updateEmulatorTextsRcon'])->name('emulator-texts.update.rcon');
+        Route::get('/texts/{text}/edit', [EmulatorTextsController::class, 'edit'])->name('emulator-texts.edit');
+        Route::put('/texts/{text}/edit', [EmulatorTextsController::class, 'update'])->name('emulator-texts.update');
+        Route::delete('/texts/{text}/delete', [EmulatorTextsController::class, 'destroy'])->name('emulator-texts.delete');
     });
 });

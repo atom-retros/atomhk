@@ -14,7 +14,7 @@ class EmulatorSettingsController extends Controller
     {
         $this->authorize(EmulatorSetting::class);
 
-        return view('emulator.index', [
+        return view('emulator.settings.index', [
             'settings' => EmulatorSetting::query()->select('key as setting', 'value')->paginate(15),
         ]);
     }
@@ -23,7 +23,7 @@ class EmulatorSettingsController extends Controller
     {
         $this->authorize(EmulatorSetting::class);
 
-        return view('emulator.create');
+        return view('emulator.settings.create');
     }
 
     public function store(EmulatorSettingsRequest $request)
@@ -42,7 +42,7 @@ class EmulatorSettingsController extends Controller
     {
         $this->authorize(EmulatorSetting::class);
 
-        return view('emulator.edit', [
+        return view('emulator.settings.edit', [
             'setting' => EmulatorSetting::query()->select('key as setting', 'value')->where('key', '=', $setting)->firstOrFail(),
         ]);
     }
@@ -72,7 +72,7 @@ class EmulatorSettingsController extends Controller
     {
         $criteria = addslashes($request->get('criteria'));
 
-        return view('emulator.index', [
+        return view('emulator.settings.index', [
             'settings' => EmulatorSetting::query()
                 ->select('key as setting', 'value')
                 ->where('key', 'like', '%' . $criteria . '%')

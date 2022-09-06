@@ -162,8 +162,8 @@
                         </a>
                     </x-navigation.navigation-item>
 
-                    <x-navigation.navigation-item :classes="request()->routeIs('bans.*') ? 'active' : ''">
-                        <a href="{{ route('dashboard') }}">
+                    <x-navigation.navigation-item :classes="request()->routeIs('emulator-texts.*') ? 'active' : ''">
+                        <a href="{{ route('emulator-texts.index') }}">
                             <x-icons.text-icon />
                             <span>Emulator Text</span>
                         </a>
