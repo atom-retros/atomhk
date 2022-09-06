@@ -10,6 +10,8 @@ use App\Http\Controllers\EmulatorSettingsController;
 use App\Http\Controllers\EmulatorTextsController;
 use App\Http\Controllers\PrivateChatlogsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WebsiteIpBlacklistsController;
+use App\Http\Controllers\WebsiteIpWhitelistsController;
 use App\Http\Controllers\WebsiteSettingsController;
 use App\Http\Controllers\WordfilterController;
 use Illuminate\Support\Facades\Route;
@@ -120,6 +122,26 @@ Route::middleware('auth')->group(function () {
             Route::get('/{websiteSetting}/edit', [WebsiteSettingsController::class, 'edit'])->name('website-settings.edit');
             Route::put('/{websiteSetting}/edit', [WebsiteSettingsController::class, 'update'])->name('website-settings.update');
             Route::delete('/{websiteSetting}/delete', [WebsiteSettingsController::class, 'destroy'])->name('website-settings.destroy');
+        });
+
+        Route::prefix('ip-whitelist')->group(function () {
+            Route::get('/', [WebsiteIpWhitelistsController::class, 'index'])->name('website-whitelist.index');
+            Route::get('/create', [WebsiteIpWhitelistsController::class, 'create'])->name('website-whitelist.create');
+            Route::post('/create', [WebsiteIpWhitelistsController::class, 'store'])->name('website-whitelist.store');
+            Route::get('/search', [WebsiteIpWhitelistsController::class, 'search'])->name('website-whitelist.search');
+            Route::get('/{websiteIpWhitelist}/edit', [WebsiteIpWhitelistsController::class, 'edit'])->name('website-whitelist.edit');
+            Route::put('/{websiteIpWhitelist}/edit', [WebsiteIpWhitelistsController::class, 'update'])->name('website-whitelist.update');
+            Route::delete('/{websiteIpWhitelist}/delete', [WebsiteIpWhitelistsController::class, 'destroy'])->name('website-whitelist.destroy');
+        });
+
+        Route::prefix('ip-blacklist')->group(function () {
+            Route::get('/', [WebsiteIpBlacklistsController::class, 'index'])->name('website-blacklist.index');
+            Route::get('/create', [WebsiteIpBlacklistsController::class, 'create'])->name('website-blacklist.create');
+            Route::post('/create', [WebsiteIpBlacklistsController::class, 'store'])->name('website-blacklist.store');
+            Route::get('/search', [WebsiteIpBlacklistsController::class, 'search'])->name('website-blacklist.search');
+            Route::get('/{websiteIpBlacklist}/edit', [WebsiteIpBlacklistsController::class, 'edit'])->name('website-blacklist.edit');
+            Route::put('/{websiteIpBlacklist}/edit', [WebsiteIpBlacklistsController::class, 'update'])->name('website-blacklist.update');
+            Route::delete('/{websiteIpBlacklist}/delete', [WebsiteIpBlacklistsController::class, 'destroy'])->name('website-blacklist.destroy');
         });
     });
 });
