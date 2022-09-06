@@ -97,6 +97,20 @@
                         </a>
                     </x-navigation.navigation-item>
 
+                    <x-navigation.navigation-item :classes="request()->routeIs('website-whitelist.*') ? 'active' : ''">
+                        <a href="{{ route('website-whitelist.index') }}">
+                            <x-icons.fingerprint-icon />
+                            <span>{{ __('Website IP whitelist') }}</span>
+                        </a>
+                    </x-navigation.navigation-item>
+
+                    <x-navigation.navigation-item :classes="request()->routeIs('website-blacklist.*') ? 'active' : ''">
+                        <a href="{{ route('website-blacklist.index') }}">
+                            <x-icons.denied-icon />
+                            <span>{{ __('Website IP blacklist') }}</span>
+                        </a>
+                    </x-navigation.navigation-item>
+
                     <x-navigation.dropdown-menu :classes="request()->routeIs('articles.*') ? 'active' : ''">
                         <x-slot:parent>
                             <x-icons.article-icon />

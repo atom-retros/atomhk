@@ -85,6 +85,16 @@ class HousekeepingPermissionSeeder extends Seeder
                 'min_rank' => 6,
                 'description' => 'The minimum rank required before being able to manage website settings',
             ],
+            [
+                'permission' => 'manage_website_blacklists',
+                'min_rank' => 6,
+                'description' => 'The minimum rank required before being able to manage website blacklists',
+            ],
+            [
+                'permission' => 'manage_website_whitelists',
+                'min_rank' => 6,
+                'description' => 'The minimum rank required before being able to manage website whitelists',
+            ],
         ];
 
         foreach ($permissions as $permission) {
