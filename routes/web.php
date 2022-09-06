@@ -10,6 +10,7 @@ use App\Http\Controllers\EmulatorSettingsController;
 use App\Http\Controllers\EmulatorTextsController;
 use App\Http\Controllers\PrivateChatlogsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WebsiteSettingsController;
 use App\Http\Controllers\WordfilterController;
 use Illuminate\Support\Facades\Route;
 
@@ -107,5 +108,18 @@ Route::middleware('auth')->group(function () {
         Route::get('/texts/{text}/edit', [EmulatorTextsController::class, 'edit'])->name('emulator-texts.edit');
         Route::put('/texts/{text}/edit', [EmulatorTextsController::class, 'update'])->name('emulator-texts.update');
         Route::delete('/texts/{text}/delete', [EmulatorTextsController::class, 'destroy'])->name('emulator-texts.delete');
+    });
+
+    // Website routes
+    Route::prefix('website')->group(function () {
+        Route::prefix('settings')->group(function () {
+            Route::get('/', [WebsiteSettingsController::class, 'index'])->name('website-settings.index');
+            Route::get('/create', [WebsiteSettingsController::class, 'create'])->name('website-settings.create');
+            Route::post('/create', [WebsiteSettingsController::class, 'store'])->name('website-settings.store');
+            Route::get('/search', [WebsiteSettingsController::class, 'search'])->name('website-settings.search');
+            Route::get('/{websiteSetting}/edit', [WebsiteSettingsController::class, 'edit'])->name('website-settings.edit');
+            Route::put('/{websiteSetting}/edit', [WebsiteSettingsController::class, 'update'])->name('website-settings.update');
+            Route::delete('/{websiteSetting}/delete', [WebsiteSettingsController::class, 'destroy'])->name('website-settings.destroy');
+        });
     });
 });

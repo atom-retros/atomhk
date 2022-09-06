@@ -90,9 +90,16 @@
                         CMS
                     </x-slot:header>
 
+                    <x-navigation.navigation-item :classes="request()->routeIs('website-settings.*') ? 'active' : ''">
+                        <a href="{{ route('website-settings.index') }}">
+                            <x-icons.settings-icon/>
+                            <span>{{ __('Website Settings') }}</span>
+                        </a>
+                    </x-navigation.navigation-item>
+
                     <x-navigation.dropdown-menu :classes="request()->routeIs('articles.*') ? 'active' : ''">
                         <x-slot:parent>
-                            <x-icons.article-icon classes="" />
+                            <x-icons.article-icon />
                             <span>Article management</span>
                         </x-slot:parent>
 
