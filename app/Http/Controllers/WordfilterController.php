@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\WordfilterFormRequest;
 use App\Models\Wordfilter;
 use App\Services\RconService;
-use Doctrine\Inflector\Rules\Word;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class WordfilterController extends Controller
@@ -31,7 +29,6 @@ class WordfilterController extends Controller
     public function store(WordfilterFormRequest $request, RconService $rcon)
     {
         Wordfilter::create($request->validated());
-        $rcon->updateWordFilter(); // Refresh the wordfilter
 
         return to_route('wordfilter.index')
             ->with('success', __(':word has been added to the wordfilter', ['word' => $request->input('key')]));
@@ -55,9 +52,20 @@ class WordfilterController extends Controller
     public function destroy(Wordfilter $key, RconService $rcon)
     {
         $key->delete();
-        $rcon->updateWordFilter(); // Refresh the wodfilrter
 
         return to_route('wordfilter.index')
             ->with('success', __(':word has been deleted from the wordfilter', ['word' => $key->key]));
+    }
+
+    public function updateFilterRcon(RconService $rcon)
+    {
+        if (!hasPermission(Auth::user(), 'manage_wordfilter')) {
+            abort(403);
+        }
+
+        $rcon->updateWordFilter();
+
+        return redirect()->back()->with('success', 'RCON executed! The word filter has been updated live on the hotel');
+
     }
 }
