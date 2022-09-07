@@ -28,20 +28,20 @@ If you are new to Laravel, then theres luckily tons of resources online to help 
 Atom HK was made to bring the retro community a solid base to build a housekeeping from. As previously mentioned Atom HK is a standalone housekeeping, allowing you to use it on any CMS with little to no edits.
 
 ### CMS Support
-Atom HK can be used for any CMS you'd like, all you have to do is modifying it a little bit to match your emulator / CMS database structure. Out of the box Atom HK will support Atom CMS, which you can find here: [https://github.com/ObjectRetros/atomcms](https://github.com/ObjectRetros/atomcms)
+Atom HK supports [Atom CMS](https://github.com/ObjectRetros/atomcms) out of the box, but since it's a standalone application, you can use it for any CMS you'd want. All that is required from you is to modify it a bit, so it matches your database structure.
 
-### Setup guide
-To install Atom HK you'll need the following:
+### Installation
+The following things is required to setup Atom HK
 - PHP 8.1 or above [PHP Downloads](https://www.php.net/downloads.php)
 - Composer v2 [Composer Download](https://getcomposer.org/download/)
 - NPM (LTS) [Node Download](https://nodejs.org/en/download/)
 - An Arcturus Morningstar database [Database repository](https://git.krews.org/morningstar/arcturus-morningstar-base-database)
 - A free API key from (Tiny MCE)[https://www.tiny.cloud/auth/signup/]
 
-*You must run the housekeeping through a subdomain or a total seperate domain, as you will not be able to run both the housekeeping and your CMS on the exact same domain name.*
+*You must also run the housekeeping through a subdomain or a total seperate domain, as you will not be able to run both the housekeeping and your CMS on the exact same domain name.*
 
-After all of the above has been fulfilled you have to do the following:
-Open CMD and navigate into the path you want the housekeeping to be located at, and run the commands listed below
+Once you've downloaded and setup the mentioned things above, it's time to do the following:<br>
+Open you CMD (Command Prompt) and navigate into the path where you want the housekeeping to be located at, and run the commands listed below
 
 #### Windows
 ```
@@ -56,11 +56,7 @@ php artisan migrate --seed
 
 Don't forget to put your Tiny MCE API key inside the "housekeeping_settings" table
 
-If you are using the housekeeping in production, dont forget to set the:
-APP_ENV=local to APP_ENV=production
-APP_DEBUG=true to APP_DEBUG=false
-
-*You must link your site to the public folder of the CMS*
+Create a new IIS site and link it to the public folder of the housekeeping.
 ```
 
 #### Required permissions
@@ -93,10 +89,6 @@ php artisan key:generate
 php artisan migrate --seed
 
 Don't forget to put your Tiny MCE API key inside the "housekeeping_settings" table
-
-If you are using the housekeeping in production, dont forget to set the:
-APP_ENV=local to APP_ENV=production
-APP_DEBUG=true to APP_DEBUG=false
 ```
 
 #### Required permissions
@@ -116,6 +108,12 @@ sudo apt-get install -y php8.1-cli php8.1-common php8.1-mysql php8.1-zip php8.1-
 
 For NGINX you can copy the config from here: [Deploy a site on nginx](https://laravel.com/docs/9.x/deployment#nginx
 
+**Important!** If you are using the housekeeping in production, dont forget to change the following within your .env file:
+```
+APP_ENV=local to APP_ENV=production
+APP_DEBUG=true to APP_DEBUG=false
+```
+
 #### Setup your own hotel from scatch:
 Have you always wanted to setup your own hotel from scratch, but are unsure how? Then  you can follow my **three** parts series on DevBest which will take you through any step necessary to get everything up and running.
 
@@ -126,4 +124,4 @@ Have you always wanted to setup your own hotel from scratch, but are unsure how?
 #### Credits
 - Object - Creating the housekeeping
 - Kasja - Helping with design, ideas & GFX
-- Bop for releasing Icon panel template (based of SB panel)
+- Bop for releasing Icon panel template
