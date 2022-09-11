@@ -35,7 +35,7 @@ class ArticleController extends Controller
     {
         $previousArticle = WebsiteArticle::query()->select('id')->orderByDesc('id')->first();
         $slug = Str::slug($request->input('title'));
-        $slug = $previousArticle ? sprintf('%s-%s', $previousArticle->id, $slug) : sprintf('%s-%s', 1, $slug);
+        $slug = $previousArticle ? sprintf('%s-%s', $previousArticle->id + 1, $slug) : sprintf('%s-%s', 1, $slug);
 
         $request->user()->articles()->create([
             'slug' => $slug,
