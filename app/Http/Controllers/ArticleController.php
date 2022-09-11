@@ -33,8 +33,12 @@ class ArticleController extends Controller
 
     public function store(ArticleFormRequest $request)
     {
+        $previousArticle = WebsiteArticle::query()->select('id')->orderByDesc('id')->first();
+        $slug = Str::slug($request->input('title'));
+        $slug = $previousArticle ? sprintf('%s-%s', $previousArticle->id, $slug) : sprintf('%s-%s', 1, $slug);
+
         $request->user()->articles()->create([
-            'slug' => sprintf('%s-%s', WebsiteArticle::orderByDesc('id')->first()->id + 1, Str::slug($request->input('title'))),
+            'slug' => $slug,
             'title' => $request->input('title'),
             'short_story' => $request->input('short_story'),
             'full_story' => clean($request->input('full_story')),
