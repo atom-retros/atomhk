@@ -28,7 +28,7 @@
                             @foreach($users as $user)
                                 <tr>
                                     <td class="d-flex overflow-hidden">
-                                        <img style="height: 50px;" class="avatar" src="{{ setting('avatar_imager') }}{{ $user->look }}&direction=2&headonly=1&head_direction=2&gesture=sml" alt="">
+                                        <img style="widht: auto; height: auto;" class="avatar" src="{{ setting('avatar_imager') }}{{ $user->look }}&direction=2&headonly=1&head_direction=2&gesture=sml" alt="">
                                         {{ $user->username }}
                                     </td>
                                     <td>{{ sensitiveInfo($user->mail) }}</td>
