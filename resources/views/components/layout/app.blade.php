@@ -297,6 +297,6 @@
     })
 </script>
 
-@stack('javascript'))
+@stack('javascript')
 </body>
 </html>
