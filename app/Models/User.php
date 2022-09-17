@@ -10,10 +10,12 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, LogsActivity;
 
     public $timestamps = false;
 
@@ -58,5 +60,13 @@ class User extends Authenticatable
     public function privateChatlogsReceived(): HasMany
     {
         return $this->hasMany(ChatlogPrivate::class, 'user_to_id', 'id');
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly([
+                'username', 'password', 'mail', 'motto', 'rank', 'hidden_staff', 'credits', 'ip_current', 'last_login',
+            ]);
     }
 }
