@@ -52,6 +52,9 @@ class FortifyServiceProvider extends ServiceProvider
 
             if ($user &&
                 Hash::check($request->input('password'), $user->password)) {
+
+                activity()->causedBy($user)->withProperty('attribute', sprintf('%s has just logged into the housekeeping from IP %s', $user->username, $request->ip()))->log('HK login');
+
                 return $user;
             }
         });

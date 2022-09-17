@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BansController;
 use App\Http\Controllers\CatalogPagesController;
@@ -142,6 +143,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/{websiteIpBlacklist}/edit', [WebsiteIpBlacklistsController::class, 'edit'])->name('website-blacklist.edit');
             Route::put('/{websiteIpBlacklist}/edit', [WebsiteIpBlacklistsController::class, 'update'])->name('website-blacklist.update');
             Route::delete('/{websiteIpBlacklist}/delete', [WebsiteIpBlacklistsController::class, 'destroy'])->name('website-blacklist.destroy');
+        });
+        Route::prefix('miscellaneous')->group(function () {
+            Route::get('/activity-logs', ActivityLogController::class)->name('activity-logs.index');
         });
     });
 });

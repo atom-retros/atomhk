@@ -190,6 +190,19 @@
                         </a>
                     </x-navigation.navigation-item>
                 </x-navigation.navigation-section>
+
+                <x-navigation.navigation-section>
+                    <x-slot:header>
+                        Miscellaneous
+                    </x-slot:header>
+
+                    <x-navigation.navigation-item :classes="request()->routeIs('miscellaneous.*') ? 'active' : ''">
+                        <a href="{{ route('activity-logs.index') }}">
+                            <x-icons.text-icon />
+                            <span>Activity Logs</span>
+                        </a>
+                    </x-navigation.navigation-item>
+                </x-navigation.navigation-section>
             </ul>
         </div>
     </nav>
