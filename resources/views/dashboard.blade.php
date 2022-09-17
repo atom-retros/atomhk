@@ -92,7 +92,7 @@
         <div class="card col-12">
             <div class="card-body">
                 <div class="d-flex justify-content-center w-100">
-                    <img src="{{ asset('assets/images/kasja_atom_logo.png') }}" alt="">
+                    <img src="{{ setting('hk_logo') }}" alt="">
                 </div>
                 <br><br>
 
