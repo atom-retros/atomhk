@@ -66,7 +66,7 @@ class User extends Authenticatable
     {
         return LogOptions::defaults()
             ->logOnly([
-                'username', 'password', 'mail', 'motto', 'rank', 'hidden_staff', 'credits', 'ip_current', 'last_login',
+                'username', 'password', 'mail', 'motto', 'rank', 'hidden_staff', 'credits', 'ip_current',
             ]);
     }
 }

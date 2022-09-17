@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Wordfilter extends Model
 {
+    use LogsActivity;
+
     protected $table = 'wordfilter';
 
     protected $guarded = [];
@@ -15,4 +19,10 @@ class Wordfilter extends Model
     public $timestamps = false;
 
     public $incrementing = false;
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logAll();
+    }
 }
