@@ -27,7 +27,7 @@
     <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
         <div class="container-fluid d-flex flex-column p-0">
             <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="{{ route('dashboard') }}">
-                <img class="w-75 drop-shadow" src="{{ asset('assets/images/kasja_atom_logo.png') }}" alt="Atom logo">
+                <img class="w-75 drop-shadow" src="{{ setting('hk_logo') }}" alt="Atom logo">
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="nav navbar-nav text-light" id="accordionSidebar">
@@ -255,7 +255,7 @@
                                     <span class="d-none d-lg-inline mr-2 text-gray-600 small">
                                         {{ auth()->user()->username }}
                                     </span>
-                                    <img class="mt-4" src="https://imager.habstar.net/?figure={{ auth()->user()->look }}&direction=2&headonly=1&head_direction=2&gesture=sml" alt="Profile pic" />
+                                    <img class="mt-4" src="{{ setting('avatar_imager') }}{{ auth()->user()->look }}&direction=2&headonly=1&head_direction=2&gesture=sml" alt="Profile pic" />
                                 </a>
 
                                 <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
