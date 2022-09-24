@@ -17,7 +17,7 @@
 <body>
     <div class="container" style="height: 100vh;">
         <div class="d-flex flex-column gap- justify-content-center align-items-center h-100">
-            <img src="{{ asset('assets/images/kasja_atom_logo.png') }}" alt="">
+            <img src="{{ setting('hk_logo') }}" alt="">
 
             <div class="card w-50 mt-3">
                 <div class="card-body">
