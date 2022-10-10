@@ -2,6 +2,7 @@
 
 return [
     'core' => [
+        'force_https' => env('FORCE_HTTPS', false), // Only set this to true if your experiencing issues with HTTPs requests
         'run_default_migrations' => env('RUN_DEFAULT_MIGRATIONS', false), // Only have this set to true if you don't use Atom CMS
     ],
 
