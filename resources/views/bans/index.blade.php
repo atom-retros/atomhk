@@ -29,7 +29,7 @@
                             @foreach($bans as $ban)
                                 <tr>
                                     <td class="d-flex overflow-hidden" style="height: 50px;">
-                                        <img class="avatar" src="https://imager.habstar.net/?figure={{ $ban->user?->look }}&direction=2&headonly=1&head_direction=2&gesture=sml" alt="">
+                                        <img class="avatar" src="{{ setting('avatar_imager') }}{{ $ban->user?->look }}&direction=2&headonly=1&head_direction=2&gesture=sml" alt="">
                                         {{ $ban->user?->username }}
                                     </td>
                                     <td>{{ sensitiveInfo($ban?->ip) }}</td>

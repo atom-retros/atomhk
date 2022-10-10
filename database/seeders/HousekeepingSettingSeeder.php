@@ -30,6 +30,11 @@ class HousekeepingSettingSeeder extends Seeder
                 'value' => '',
                 'comment' => 'The API key needed for the tiny mce editor',
             ],
+            [
+                'key' => 'hk_logo',
+                'value' => '/assets/images/kasja_atom_logo.png',
+                'comment' => 'The base url to the Housekeeping logo',
+            ],
         ];
 
         HousekeepingSetting::query()->upsert($settings, ['key']);
