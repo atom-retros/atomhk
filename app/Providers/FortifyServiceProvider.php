@@ -35,6 +35,18 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Fortify::twoFactorChallengeView(function () {
+            return view('auth.two-factor-challenge');
+        });
+
+        RateLimiter::for('two-factor', function (Request $request) {
+            return Limit::perMinute(5)->by($request->session()->get('login.id'));
+        });
+
+        RateLimiter::for('login', function (Request $request) {
+            return Limit::perMinute(5)->by($request->input('username').$request->ip());
+        });
+
         Fortify::authenticateUsing(function (Request $request) {
             $user = User::query()->where('username', $request->input('username'))->first();
 
@@ -47,6 +59,12 @@ class FortifyServiceProvider extends ServiceProvider
             if (! hasPermission($user,'can_login')) {
                 throw ValidationException::withMessages([
                     Fortify::username() => __('You are not eligible to login to the housekeeping.'),
+                ]);
+            }
+
+            if (cmsSetting('force_staff_2fa') === '1' && is_null($user->two_factor_secret)) {
+                throw ValidationException::withMessages([
+                    Fortify::username() => __('You must go to the hotel and enable 2factor authentication before logging into the housekeeping.'),
                 ]);
             }
 

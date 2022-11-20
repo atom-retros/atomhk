@@ -14,7 +14,6 @@ return new class extends Migration
      */
     public function up()
     {
-        if (config('habbo.core.run_default_migrations')) {
             Schema::table('users', function (Blueprint $table) {
                 $table->text('two_factor_secret')
                     ->after('password')
@@ -30,7 +29,6 @@ return new class extends Migration
                         ->nullable();
                 }
             });
-        }
     }
 
     /**
