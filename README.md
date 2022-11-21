@@ -51,7 +51,7 @@ cd atomhk
 copy .env.example .env
 composer install 
 npm install && npm run build (for development you run: npm run dev)
-php artisan key:generate
+php artisan key:generate (if you are using Atom CMS you should copy the APP_KEY from there)
 php artisan migrate --seed
 
 Don't forget to put your Tiny MCE API key inside the "housekeeping_settings" table
@@ -85,7 +85,7 @@ cd atomhk
 cp .env.example .env
 composer install
 npm install && npm run build (for development you run: npm run dev)
-php artisan key:generate
+php artisan key:generate (if you are using Atom CMS you should copy the APP_KEY from there)
 php artisan migrate --seed
 
 Don't forget to put your Tiny MCE API key inside the "housekeeping_settings" table
