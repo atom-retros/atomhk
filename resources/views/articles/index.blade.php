@@ -46,20 +46,20 @@
                                         <div class="btn-group" role="group">
                                             @if(hasPermission('edit_article'))
                                                 <a href="{{ route('articles.edit', $article) }}">
-                                                    <button class="btn btn-primary" type="button">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </button>
+                                                    <x-elements.primary-button tooltip-text="{{ __('Edit article') }}">
+                                                        <i class="fas fa-edit"></i>
+                                                    </x-elements.primary-button>
                                                 </a>
                                             @endif
 
                                             @if(hasPermission('delete_article'))
-                                                <form class="ml-2" action="{{ route('articles.destroy', $article) }}" method="POST">
+                                                <form class="ml-2" id="deleteArticleForm" action="{{ route('articles.destroy', $article) }}" method="POST"  onSubmit="return confirm('Are you sure you want to delete this article?');">
                                                     @method('DELETE')
                                                     @csrf
 
-                                                    <button class="btn btn-danger" type="submit">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
+                                                    <x-elements.danger-button tooltip-text="{{ __('Delete article') }}">
+                                                        <i class="fas fa-trash"></i>
+                                                    </x-elements.danger-button>
                                                 </form>
                                             @endif
                                         </div>

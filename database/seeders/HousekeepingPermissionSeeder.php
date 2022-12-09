@@ -21,6 +21,11 @@ class HousekeepingPermissionSeeder extends Seeder
                 'description' => 'The minimum rank required before being able to edit a user',
             ],
             [
+                'permission' => 'reset_user_password',
+                'min_rank' => 6,
+                'description' => 'The minimum rank required before being able to reset the password for a user',
+            ],
+            [
                 'permission' => 'delete_user',
                 'min_rank' => 7,
                 'description' => 'The minimum rank required before being able to delete a user',

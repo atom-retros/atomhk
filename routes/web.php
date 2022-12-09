@@ -11,6 +11,7 @@ use App\Http\Controllers\EmulatorSettingsController;
 use App\Http\Controllers\EmulatorTextsController;
 use App\Http\Controllers\PrivateChatlogsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserPasswordController;
 use App\Http\Controllers\WebsiteIpBlacklistsController;
 use App\Http\Controllers\WebsiteIpWhitelistsController;
 use App\Http\Controllers\WebsiteSettingsController;
@@ -38,6 +39,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
         Route::put('/{user}/edit', [UserController::class, 'update'])->name('users.update');
         Route::delete('/{user}/delete', [UserController::class, 'destroy'])->name('user.destroy');
+
+        Route::get('/{user}/edit/password', [UserPasswordController::class, 'edit'])->name('users.password.edit');
+        Route::put('/{user}/edit/password', [UserPasswordController::class, 'update'])->name('users.password.update');
     });
 
     // Article management
@@ -83,7 +87,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/pages/create', [CatalogPagesController::class, 'store'])->name('catalog-pages.store');
         Route::get('/pages/{catalogPage}/edit', [CatalogPagesController::class, 'edit'])->name('catalog-pages.edit');
         Route::put('/pages/{catalogPage}/edit', [CatalogPagesController::class, 'update'])->name('catalog-pages.update');
-        Route::delete('/pages/{catalogPage}/delete', [CatalogPagesController::class, 'destroy'])->name('catalog-pages.delete');
+        Route::delete('/pages/{id}/delete', [CatalogPagesController::class, 'destroy'])->name('catalog-pages.delete');
 
         // Page search
         Route::get('/search', [CatalogPageSearchController::class, 'search'])->name('catalog-page.search');

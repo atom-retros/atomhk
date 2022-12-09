@@ -65,19 +65,19 @@
                                         <div class="btn-group" role="group">
                                             @if(hasPermission('manage_website_settings'))
                                                 <a href="{{ route('website-settings.edit', $setting) }}">
-                                                    <x-elements.primary-button>
-                                                        <i class="fa fa-pencil"></i>
+                                                    <x-elements.primary-button tooltip-text="{{ __('Edit setting') }}">
+                                                        <i class="fas fa-edit"></i>
                                                     </x-elements.primary-button>
                                                 </a>
                                             @endif
 
-                                            @if(hasPermission('manage_website_settings'))
-                                                <form class="ml-2" id="deleteSettingsForm" action="{{ route('website-settings.destroy', $setting) }}" method="POST" onSubmit="event.preventDefault(); return confirmDeleteSetting()">
+                                             @if(hasPermission('manage_website_settings'))
+                                                <form class="ml-2" id="deleteSettingsForm" action="{{ route('website-settings.destroy', $setting) }}" method="POST" onSubmit="return confirm('Are you sure you want to delete this website setting?');">
                                                     @method('DELETE')
                                                     @csrf
 
-                                                    <x-elements.danger-button>
-                                                        <i class="fa fa-trash"></i>
+                                                    <x-elements.danger-button tooltipText="{{ __('Delete setting') }}">
+                                                        <i class="fas fa-trash"></i>
                                                     </x-elements.danger-button>
                                                 </form>
                                             @endif
@@ -95,26 +95,4 @@
             </div>
         </div>
     </div>
-
-    @push('javascript')
-        <script>
-            function confirmDeleteSetting(e) {
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.querySelector('#deleteSettingsForm').submit();
-                    }
-                })
-
-                e.preventDefault();
-            }
-        </script>
-    @endpush
 </x-layout.app>

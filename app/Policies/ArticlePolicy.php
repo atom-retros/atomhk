@@ -30,7 +30,7 @@ class ArticlePolicy
         return hasPermission('edit_article');
     }
 
-    public function delete(WebsiteArticle $websiteArticle)
+    public function delete()
     {
         return hasPermission('delete_article');
     }

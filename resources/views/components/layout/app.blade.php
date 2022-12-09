@@ -64,6 +64,12 @@
                         </a>
                     </x-navigation.navigation-item>
 
+                    <x-navigation.navigation-item :classes="request()->routeIs('bans.*') ? 'active' : ''">
+                        <a href="{{ route('bans.index') }}">
+                            <x-icons.document-icon />
+                            <span>Staff Applications</span>
+                        </a>
+                    </x-navigation.navigation-item>
 
                     <x-navigation.dropdown-menu :classes="request()->routeIs('articles.*') ? 'active' : ''">
                         <x-slot:parent>
@@ -142,33 +148,6 @@
                             <span>Catalog pages</span>
                         </a>
                     </x-navigation.navigation-item>
-
-                    <x-navigation.dropdown-menu>
-                        <x-slot:parent>
-                            <x-icons.catalog-icon />
-                            <span>
-                                Catalog
-                            </span>
-                        </x-slot:parent>
-
-                        <x-navigation.dropdown-child>
-                            <a href="{{ route('articles.index') }}">
-                                Catalog items
-                            </a>
-                        </x-navigation.dropdown-child>
-
-                        <x-navigation.dropdown-child>
-                            <a href="{{ route('articles.create') }}">
-                                Items base
-                            </a>
-                        </x-navigation.dropdown-child>
-
-                        <x-navigation.dropdown-child>
-                            <a href="{{ route('articles.create') }}">
-                                Add furniture
-                            </a>
-                        </x-navigation.dropdown-child>
-                    </x-navigation.dropdown-menu>
                 </x-navigation.navigation-section>
 
                 <x-navigation.navigation-section>
@@ -309,6 +288,7 @@
         $('[data-toggle="tooltip"]').tooltip()
     })
 </script>
+
 
 @stack('javascript')
 </body>

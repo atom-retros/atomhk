@@ -81,20 +81,20 @@
                                         <div class="btn-group" role="group">
                                             @if(hasPermission('manage_catalog_pages'))
                                                 <a href="{{ route('catalog-pages.edit', $page) }}">
-                                                    <button class="btn btn-primary" type="button">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </button>
+                                                    <x-elements.primary-button tooltip-text="{{ __('Edit page') }}">
+                                                        <i class="fas fa-edit"></i>
+                                                    </x-elements.primary-button>
                                                 </a>
                                             @endif
 
                                             @if(hasPermission('delete_catalog_pages'))
-                                                <form class="ml-2" id="deletePageForm" action="{{ route('catalog-pages.delete', $page) }}" method="POST" onSubmit="event.preventDefault(); return confirmDeletePage()">
+                                                <form class="ml-2" id="deletePageForm" action="{{ route('catalog-pages.delete', $page) }}" method="POST"  onSubmit="return confirm('Are you sure you want to delete this catalog page?');">
                                                     @method('DELETE')
                                                     @csrf
 
-                                                    <button class="btn btn-danger" type="submit">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
+                                                    <x-elements.danger-button tooltip-text="Delete page">
+                                                        <i class="fas fa-trash"></i>
+                                                    </x-elements.danger-button>
                                                 </form>
                                             @endif
                                         </div>
@@ -111,28 +111,4 @@
             </div>
         </div>
     </div>
-
-    @push('javascript')
-        <script>
-            function confirmDeletePage(e) {
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    console.log(result.isConfirmed)
-                    if (result.isConfirmed) {
-                        document.querySelector('#deletePageForm').submit();
-                    }
-                })
-
-                e.preventDefault();
-            }
-
-        </script>
-    @endpush
 </x-layout.app>

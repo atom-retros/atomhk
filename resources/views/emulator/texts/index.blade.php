@@ -71,19 +71,19 @@
                                         <div class="btn-group" role="group">
                                             @if(hasPermission('manage_emulator_texts'))
                                                 <a href="{{ route('emulator-texts.edit', $text->text) }}">
-                                                    <x-elements.primary-button>
-                                                        <i class="fa fa-pencil"></i>
+                                                    <x-elements.primary-button tooltip-text="{{ __('Edit text') }}">
+                                                        <i class="fas fa-edit"></i>
                                                     </x-elements.primary-button>
                                                 </a>
                                             @endif
 
                                             @if(hasPermission('manage_emulator_texts'))
-                                                <form class="ml-2" id="deleteTextsForm" action="{{ route('emulator-texts.delete', $text->text) }}" method="POST" onSubmit="event.preventDefault(); return confirmDeleteText()">
+                                                <form class="ml-2" id="deleteTextsForm" action="{{ route('emulator-texts.delete', $text->text) }}" method="POST"  onSubmit="return confirm('Are you sure you want to delete this emulator text?');">
                                                     @method('DELETE')
                                                     @csrf
 
-                                                    <x-elements.danger-button>
-                                                        <i class="fa fa-trash"></i>
+                                                    <x-elements.danger-button tooltip-text="{{ __('Delete text') }}">
+                                                        <i class="fas fa-trash"></i>
                                                     </x-elements.danger-button>
                                                 </form>
                                             @endif
@@ -101,26 +101,4 @@
             </div>
         </div>
     </div>
-
-    @push('javascript')
-        <script>
-            function confirmDeleteText(e) {
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.querySelector('#deleteTextsForm').submit();
-                    }
-                })
-
-                e.preventDefault();
-            }
-        </script>
-    @endpush
 </x-layout.app>

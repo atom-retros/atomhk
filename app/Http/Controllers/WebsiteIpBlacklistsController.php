@@ -56,8 +56,8 @@ class WebsiteIpBlacklistsController extends Controller
 
     public function search(Request $request)
     {
-        if (!hasPermission(Auth::user(), 'manage_website_blacklists')) {
-            abort(403);
+        if (!hasPermission('manage_website_blacklists')) {
+            abort(401);
         }
 
         $criteria = addslashes($request->get('criteria'));

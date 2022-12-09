@@ -69,19 +69,19 @@
                                         <div class="btn-group" role="group">
                                             @if(hasPermission('manage_website_whitelists'))
                                                 <a href="{{ route('website-whitelist.edit', $whitelist) }}">
-                                                    <x-elements.primary-button>
-                                                        <i class="fa fa-pencil"></i>
+                                                    <x-elements.primary-button tooltip-text="{{ __('Edit whitelist') }}">
+                                                        <i class="fas fa-edit"></i>
                                                     </x-elements.primary-button>
                                                 </a>
                                             @endif
 
                                             @if(hasPermission('manage_website_whitelists'))
-                                                <form class="ml-2" id="deleteWhitelistForm" action="{{ route('website-whitelist.destroy', $whitelist) }}" method="POST" onSubmit="event.preventDefault(); return confirmDeleteWhitelist()">
+                                                <form class="ml-2" id="deleteWhitelistForm" action="{{ route('website-whitelist.destroy', $whitelist) }}" method="POST" onSubmit="return confirm('Are you sure you want to delete this whitelist?');">
                                                     @method('DELETE')
                                                     @csrf
 
-                                                    <x-elements.danger-button>
-                                                        <i class="fa fa-trash"></i>
+                                                    <x-elements.danger-button tooltip-text="{{ __('Delete whitelist') }}">
+                                                        <i class="fas fa-trash"></i>
                                                     </x-elements.danger-button>
                                                 </form>
                                             @endif
@@ -99,26 +99,4 @@
             </div>
         </div>
     </div>
-
-    @push('javascript')
-        <script>
-            function confirmDeleteWhitelist(e) {
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.querySelector('#deleteWhitelistForm').submit();
-                    }
-                })
-
-                e.preventDefault();
-            }
-        </script>
-    @endpush
 </x-layout.app>

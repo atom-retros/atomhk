@@ -41,13 +41,13 @@
                                     <td>
                                         <div class="btn-group" role="group">
                                             @if(hasPermission('delete_user'))
-                                                <form class="ml-2" action="{{ route('bans.destroy', $ban) }}" method="POST">
+                                                <form class="ml-2" action="{{ route('bans.destroy', $ban) }}" method="POST" onSubmit='confirmDelete("deleteBanForm");'   onSubmit="return confirm('Are you sure you want to delete this ban?');">
                                                     @method('DELETE')
                                                     @csrf
 
-                                                    <button class="btn btn-danger" type="submit">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
+                                                    <x-elements.danger-button tooltip-text="{{ __('Delete ban') }}">
+                                                        <i class="fas fa-trash"></i>
+                                                    </x-elements.danger-button>
                                                 </form>
                                             @endif
                                         </div>

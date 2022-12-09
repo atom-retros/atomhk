@@ -4,6 +4,7 @@ use App\Models\HousekeepingPermission;
 use App\Models\HousekeepingSetting;
 use App\Models\User;
 use App\Models\WebsiteSetting;
+use App\Services\HousekeepingSettingsService;
 use App\Services\PermissionsService;
 use App\Services\WebsiteSettingsService;
 use Illuminate\Support\Facades\Auth;
@@ -28,14 +29,8 @@ function sensitiveInfo($string)
 if (!function_exists('setting')) {
     function setting(string $setting): string
     {
-        return app(SettingsService::class)->getOrDefault($setting);
+        return app(HousekeepingSettingsService::class)->getOrDefault($setting);
     }
-}
-
-// TODO: Rewrite into service
-function setting(string $setting): string
-{
-    return HousekeepingSetting::query()->where('key', '=', $setting)->first()->value ?? '';
 }
 
 if (!function_exists('cmsSetting')) {

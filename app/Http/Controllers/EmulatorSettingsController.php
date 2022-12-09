@@ -82,7 +82,7 @@ class EmulatorSettingsController extends Controller
 
     public function updateRcon(RconService $rcon)
     {
-        if (!hasPermission(Auth::user(), 'manage_emulator_settings')) {
+        if (!hasPermission('manage_emulator_settings')) {
             abort(403);
         }
 
