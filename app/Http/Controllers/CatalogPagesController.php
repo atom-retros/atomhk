@@ -74,11 +74,9 @@ class CatalogPagesController extends Controller
         return to_route('catalog-pages.index')->with('success', 'The catalog page has been updated!');
     }
 
-    public function destroy(CatalogPage $id)
+    public function destroy(CatalogPage $catalogPage)
     {
-        dd($id);
-
-        $id->delete();
+        $catalogPage->delete();
 
         return redirect()->back()->with('success', 'The catalog page has been removed!');
     }
