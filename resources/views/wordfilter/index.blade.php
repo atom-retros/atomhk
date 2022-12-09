@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-between">
             <h3 class="text-dark mb-4">{{ __('Wordfilter Management') }}</h3>
 
-            @if(hasPermission(auth()->user(), 'manage_wordfilter'))
+            @if(hasPermission('manage_wordfilter'))
                 <div class="d-flex" style="gap: 10px;">
                     <a href="{{ route('wordfilter.create') }}">
                         <x-elements.primary-button>
@@ -55,7 +55,7 @@
 
                                     <td>
                                         <div class="btn-group" role="group">
-                                            @if(hasPermission(auth()->user(), 'manage_wordfilter'))
+                                            @if(hasPermission('manage_wordfilter'))
                                                 <a href="{{ route('wordfilter.edit', $word->key) }}">
                                                     <x-elements.primary-button type="button">
                                                         <i class="fa fa-pencil"></i>
@@ -63,7 +63,7 @@
                                                 </a>
                                             @endif
 
-                                            @if(hasPermission(auth()->user(), 'manage_wordfilter'))
+                                            @if(hasPermission('manage_wordfilter'))
                                                 <form class="ml-2" action="{{ route('wordfilter.destroy', $word->key) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf

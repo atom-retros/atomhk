@@ -12,22 +12,22 @@ class EmulatorTextPolicy
 
     public function viewAny(User $user)
     {
-        return hasPermission($user, 'manage_emulator_texts');
+        return hasPermission('manage_emulator_texts');
     }
 
     public function create(User $user)
     {
-        return hasPermission($user, 'manage_emulator_texts');
+        return hasPermission('manage_emulator_texts');
     }
 
     public function update(User $user)
     {
-        return hasPermission($user, 'manage_emulator_texts');
+        return hasPermission('manage_emulator_texts');
     }
 
 
     public function delete(User $user)
     {
-        return hasPermission($user, 'manage_emulator_texts');
+        return hasPermission('manage_emulator_texts');
     }
 }

@@ -12,6 +12,6 @@ class ChatlogRoomPolicy
 
     public function viewAny(User $user): bool
     {
-        return hasPermission($user, 'manage_room_chatlogs');
+        return hasPermission('manage_room_chatlogs');
     }
 }

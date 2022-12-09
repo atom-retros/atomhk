@@ -27,7 +27,7 @@
                </div>
 
               <div class="col-12 col-lg-6 d-flex justify-content-end">
-                  @if(hasPermission(auth()->user(), 'manage_website_settings'))
+                  @if(hasPermission('manage_website_settings'))
                       <div class="d-flex" style="gap: 10px;">
                           <a href="{{ route('website-settings.create') }}">
                               <button class="btn btn-primary d-flex align-self-start">{{ __('Create website setting') }}</button>
@@ -63,7 +63,7 @@
                                     <td>{{ $setting->comment }}</td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                            @if(hasPermission(auth()->user(), 'manage_website_settings'))
+                                            @if(hasPermission('manage_website_settings'))
                                                 <a href="{{ route('website-settings.edit', $setting) }}">
                                                     <x-elements.primary-button>
                                                         <i class="fa fa-pencil"></i>
@@ -71,7 +71,7 @@
                                                 </a>
                                             @endif
 
-                                            @if(hasPermission(auth()->user(), 'manage_website_settings'))
+                                            @if(hasPermission('manage_website_settings'))
                                                 <form class="ml-2" id="deleteSettingsForm" action="{{ route('website-settings.destroy', $setting) }}" method="POST" onSubmit="event.preventDefault(); return confirmDeleteSetting()">
                                                     @method('DELETE')
                                                     @csrf

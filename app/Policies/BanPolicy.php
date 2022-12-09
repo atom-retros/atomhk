@@ -18,7 +18,7 @@ class BanPolicy
      */
     public function viewAny(User $user)
     {
-        return hasPermission($user, 'manage_bans');
+        return hasPermission('manage_bans');
     }
 
 
@@ -31,6 +31,6 @@ class BanPolicy
      */
     public function delete(User $user, Ban $ban)
     {
-        return hasPermission($user, 'manage_bans');
+        return hasPermission('manage_bans');
     }
 }

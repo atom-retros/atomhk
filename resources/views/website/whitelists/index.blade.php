@@ -27,7 +27,7 @@
                </div>
 
               <div class="col-12 col-lg-6 d-flex justify-content-end">
-                  @if(hasPermission(auth()->user(), 'manage_website_whitelists'))
+                  @if(hasPermission('manage_website_whitelists'))
                       <div class="d-flex" style="gap: 10px;">
                           <a href="{{ route('website-whitelist.create') }}">
                               <button class="btn btn-primary d-flex align-self-start">{{ __('Create website whitelist') }}</button>
@@ -67,7 +67,7 @@
                                     <td>{{ $whitelist->updated_at }}</td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                            @if(hasPermission(auth()->user(), 'manage_website_whitelists'))
+                                            @if(hasPermission('manage_website_whitelists'))
                                                 <a href="{{ route('website-whitelist.edit', $whitelist) }}">
                                                     <x-elements.primary-button>
                                                         <i class="fa fa-pencil"></i>
@@ -75,7 +75,7 @@
                                                 </a>
                                             @endif
 
-                                            @if(hasPermission(auth()->user(), 'manage_website_whitelists'))
+                                            @if(hasPermission('manage_website_whitelists'))
                                                 <form class="ml-2" id="deleteWhitelistForm" action="{{ route('website-whitelist.destroy', $whitelist) }}" method="POST" onSubmit="event.preventDefault(); return confirmDeleteWhitelist()">
                                                     @method('DELETE')
                                                     @csrf

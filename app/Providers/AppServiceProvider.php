@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Services\HousekeepingSettingsService;
+use App\Services\PermissionsService;
+use App\Services\WebsiteSettingsService;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
@@ -15,7 +18,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(
+            WebsiteSettingsService::class,
+            fn () => new WebsiteSettingsService()
+        );
+
+        $this->app->singleton(
+            HousekeepingSettingsService::class,
+            fn () => new HousekeepingSettingsService()
+        );
+
+        $this->app->singleton(
+            PermissionsService::class,
+            fn () => new PermissionsService()
+        );
     }
 
     /**

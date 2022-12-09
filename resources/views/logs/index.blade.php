@@ -34,7 +34,7 @@
 
                                     <td>
                                         <div class="btn-group" role="group">
-                                            @if(hasPermission(auth()->user(), 'view_activity_logs'))
+                                            @if(hasPermission('view_activity_logs'))
                                                 <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#logModal-{{ $log->id }}">
                                                     <i class="fa fa-eye"></i>
                                                 </button>

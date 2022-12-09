@@ -38,7 +38,7 @@
                                     <td>{{ date('Y/m/d', $user->last_online) }}</td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                            @if(hasPermission(auth()->user(), 'edit_user'))
+                                            @if(hasPermission('edit_user'))
                                                 <a href="{{ route('users.edit', $user) }}">
                                                     <button class="btn btn-primary" type="button">
                                                         <i class="fa fa-pencil"></i>
@@ -46,7 +46,7 @@
                                                 </a>
                                             @endif
 
-                                            @if(hasPermission(auth()->user(), 'delete_user'))
+                                            @if(hasPermission('delete_user'))
                                                 <form class="ml-2" action="{{ route('user.destroy', $user) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
@@ -57,7 +57,7 @@
                                                 </form>
                                             @endif
 
-                                            @if(hasPermission(auth()->user(), 'edit_user'))
+                                            @if(hasPermission('edit_user'))
                                                 <form class="ml-2" action="{{ route('users.clones', $user) }}" method="POST">
                                                     @csrf
 

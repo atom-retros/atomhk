@@ -27,7 +27,7 @@
                </div>
 
               <div class="col-12 col-lg-6 d-flex justify-content-end">
-                  @if(hasPermission(auth()->user(), 'manage_website_blacklists'))
+                  @if(hasPermission('manage_website_blacklists'))
                       <div class="d-flex" style="gap: 10px;">
                           <a href="{{ route('website-blacklist.create') }}">
                               <button class="btn btn-primary d-flex align-self-start">{{ __('Create website blacklist') }}</button>
@@ -67,7 +67,7 @@
                                     <td>{{ $blacklist->updated_at }}</td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                            @if(hasPermission(auth()->user(), 'manage_website_blacklists'))
+                                            @if(hasPermission('manage_website_blacklists'))
                                                 <a href="{{ route('website-blacklist.edit', $blacklist) }}">
                                                     <x-elements.primary-button>
                                                         <i class="fa fa-pencil"></i>
@@ -75,7 +75,7 @@
                                                 </a>
                                             @endif
 
-                                            @if(hasPermission(auth()->user(), 'manage_website_blacklists'))
+                                            @if(hasPermission('manage_website_blacklists'))
                                                 <form class="ml-2" id="deleteBlacklistForm" action="{{ route('website-blacklist.destroy', $blacklist) }}" method="POST" onSubmit="event.preventDefault(); return confirmDeleteBlacklist()">
                                                     @method('DELETE')
                                                     @csrf

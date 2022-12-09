@@ -40,7 +40,7 @@
                                     <td>{{ $ban->type }}</td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                            @if(hasPermission(auth()->user(), 'delete_user'))
+                                            @if(hasPermission('delete_user'))
                                                 <form class="ml-2" action="{{ route('bans.destroy', $ban) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf

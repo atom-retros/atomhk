@@ -79,7 +79,7 @@
 
                                     <td>
                                         <div class="btn-group" role="group">
-                                            @if(hasPermission(auth()->user(), 'manage_catalog_pages'))
+                                            @if(hasPermission('manage_catalog_pages'))
                                                 <a href="{{ route('catalog-pages.edit', $page) }}">
                                                     <button class="btn btn-primary" type="button">
                                                         <i class="fa fa-pencil"></i>
@@ -87,7 +87,7 @@
                                                 </a>
                                             @endif
 
-                                            @if(hasPermission(auth()->user(), 'delete_catalog_pages'))
+                                            @if(hasPermission('delete_catalog_pages'))
                                                 <form class="ml-2" id="deletePageForm" action="{{ route('catalog-pages.delete', $page) }}" method="POST" onSubmit="event.preventDefault(); return confirmDeletePage()">
                                                     @method('DELETE')
                                                     @csrf

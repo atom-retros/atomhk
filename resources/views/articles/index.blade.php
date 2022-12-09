@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-between">
             <h3 class="text-dark mb-4">User Management</h3>
 
-            @if(hasPermission(auth()->user(), 'write_article'))
+            @if(hasPermission('write_article'))
                 <a href="{{ route('articles.create') }}">
                     <button class="btn btn-primary d-flex align-self-start">{{ __('Create article') }}</button>
                 </a>
@@ -44,7 +44,7 @@
 
                                     <td>
                                         <div class="btn-group" role="group">
-                                            @if(hasPermission(auth()->user(), 'edit_article'))
+                                            @if(hasPermission('edit_article'))
                                                 <a href="{{ route('articles.edit', $article) }}">
                                                     <button class="btn btn-primary" type="button">
                                                         <i class="fa fa-pencil"></i>
@@ -52,7 +52,7 @@
                                                 </a>
                                             @endif
 
-                                            @if(hasPermission(auth()->user(), 'delete_article'))
+                                            @if(hasPermission('delete_article'))
                                                 <form class="ml-2" action="{{ route('articles.destroy', $article) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf

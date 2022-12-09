@@ -27,7 +27,7 @@
                </div>
 
               <div class="col-12 col-lg-6 d-flex justify-content-end">
-                  @if(hasPermission(auth()->user(), 'manage_emulator_settings'))
+                  @if(hasPermission('manage_emulator_settings'))
                       <div class="d-flex" style="gap: 10px;">
                           <a href="{{ route('emulator-settings.create') }}">
                               <button class="btn btn-primary d-flex align-self-start">{{ __('Create emulator setting') }}</button>
@@ -65,7 +65,7 @@
                                     <td>{{ $setting->value }}</td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                            @if(hasPermission(auth()->user(), 'manage_emulator_settings'))
+                                            @if(hasPermission('manage_emulator_settings'))
                                                 <a href="{{ route('emulator-settings.edit', $setting->setting) }}">
                                                     <button class="btn btn-primary" type="button">
                                                         <i class="fa fa-pencil"></i>
@@ -73,7 +73,7 @@
                                                 </a>
                                             @endif
 
-                                            @if(hasPermission(auth()->user(), 'manage_emulator_settings'))
+                                            @if(hasPermission('manage_emulator_settings'))
                                                 <form class="ml-2" id="deleteSettingForm" action="{{ route('emulator-settings.delete', $setting->setting) }}" method="POST" onSubmit="event.preventDefault(); return confirmDeleteSetting()">
                                                     @method('DELETE')
                                                     @csrf

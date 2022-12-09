@@ -18,7 +18,7 @@ class CatalogPagePolicy
      */
     public function viewAny(User $user)
     {
-        return hasPermission($user, 'manage_catalog_pages');
+        return hasPermission('manage_catalog_pages');
     }
 
     /**
@@ -30,7 +30,7 @@ class CatalogPagePolicy
      */
     public function view(User $user, CatalogPage $catalogPage)
     {
-        return hasPermission($user, 'manage_catalog_pages');
+        return hasPermission('manage_catalog_pages');
     }
 
     /**
@@ -41,7 +41,7 @@ class CatalogPagePolicy
      */
     public function create(User $user)
     {
-        return hasPermission($user, 'manage_catalog_pages');
+        return hasPermission('manage_catalog_pages');
     }
 
     /**
@@ -53,7 +53,7 @@ class CatalogPagePolicy
      */
     public function update(User $user, CatalogPage $catalogPage)
     {
-        return hasPermission($user, 'manage_catalog_pages');
+        return hasPermission('manage_catalog_pages');
     }
 
     /**
@@ -65,6 +65,6 @@ class CatalogPagePolicy
      */
     public function delete(User $user, CatalogPage $catalogPage)
     {
-        return hasPermission($user, 'delete_catalog_pages');
+        return hasPermission('delete_catalog_pages');
     }
 }

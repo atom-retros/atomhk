@@ -27,7 +27,7 @@
                </div>
 
               <div class="col-12 col-lg-6 d-flex justify-content-end">
-                  @if(hasPermission(auth()->user(), 'manage_emulator_texts'))
+                  @if(hasPermission('manage_emulator_texts'))
                       <div class="d-flex" style="gap: 10px;">
                           <a href="{{ route('emulator-texts.create') }}">
                               <button class="btn btn-primary d-flex align-self-start">{{ __('Create emulator texts') }}</button>
@@ -69,7 +69,7 @@
                                     <td>{{ $text->value }}</td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                            @if(hasPermission(auth()->user(), 'manage_emulator_texts'))
+                                            @if(hasPermission('manage_emulator_texts'))
                                                 <a href="{{ route('emulator-texts.edit', $text->text) }}">
                                                     <x-elements.primary-button>
                                                         <i class="fa fa-pencil"></i>
@@ -77,7 +77,7 @@
                                                 </a>
                                             @endif
 
-                                            @if(hasPermission(auth()->user(), 'manage_emulator_texts'))
+                                            @if(hasPermission('manage_emulator_texts'))
                                                 <form class="ml-2" id="deleteTextsForm" action="{{ route('emulator-texts.delete', $text->text) }}" method="POST" onSubmit="event.preventDefault(); return confirmDeleteText()">
                                                     @method('DELETE')
                                                     @csrf
