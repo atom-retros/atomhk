@@ -57,13 +57,19 @@ class WordfilterController extends Controller
             ->with('success', __(':word has been deleted from the wordfilter', ['word' => $key->key]));
     }
 
-    public function updateFilterRcon(RconService $rcon)
+    public function updateFilterRcon(RconService $rconService)
     {
-        if (!hasPermission(Auth::user(), 'manage_wordfilter')) {
-            abort(403);
+        if (!hasPermission('manage_wordfilter')) {
+            abort(401);
         }
 
-        $rcon->updateWordFilter();
+        if (!$rconService->isConnected()) {
+            return redirect()->back()->withErrors([
+                'message' => __('The RCON connection could not be established!')
+            ]);
+        }
+
+        $rconService->updateWordFilter();
 
         return redirect()->back()->with('success', 'RCON executed! The word filter has been updated live on the hotel');
 

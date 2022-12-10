@@ -12,21 +12,21 @@ class WebsiteIpWhitelistPolicy
 
     public function viewAny(User $user): bool
     {
-        return hasPermission($user, 'manage_website_whitelists');
+        return hasPermission('manage_website_whitelists');
     }
 
     public function create(User $user): bool
     {
-        return hasPermission($user, 'manage_website_whitelists');
+        return hasPermission('manage_website_whitelists');
     }
 
     public function update(User $user, WebsiteIpWhitelist $websiteIpWhitelist): bool
     {
-        return hasPermission($user, 'manage_website_whitelists');
+        return hasPermission('manage_website_whitelists');
     }
 
     public function delete(User $user, WebsiteIpWhitelist $websiteIpWhitelist): bool
     {
-        return hasPermission($user, 'manage_website_whitelists');
+        return hasPermission('manage_website_whitelists');
     }
 }

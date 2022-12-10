@@ -43,166 +43,180 @@
                         Hotel
                     </x-slot:header>
 
-                    <x-navigation.navigation-item :classes="request()->routeIs('users.*') ? 'active' : ''">
-                        <a href="{{ route('users.index') }}">
-                            <x-icons.users-icon />
-                            <span>User Management</span>
-                        </a>
-                    </x-navigation.navigation-item>
-
-                    <x-navigation.navigation-item :classes="request()->routeIs('wordfilter.*') ? 'active' : ''">
-                        <a href="{{ route('wordfilter.index') }}">
-                            <x-icons.wordfilter-icon />
-                            <span>Wordfilter Management</span>
-                        </a>
-                    </x-navigation.navigation-item>
-
-                    <x-navigation.navigation-item :classes="request()->routeIs('bans.*') ? 'active' : ''">
-                        <a href="{{ route('bans.index') }}">
-                            <x-icons.denied-icon />
-                            <span>Ban Management</span>
-                        </a>
-                    </x-navigation.navigation-item>
-
-
-                    <x-navigation.dropdown-menu :classes="request()->routeIs('articles.*') ? 'active' : ''">
-                        <x-slot:parent>
-                            <x-icons.chat-icon />
-                            <span>Chatlogs</span>
-                        </x-slot:parent>
-
-                        <x-navigation.dropdown-child>
-                            <a href="{{ route('chatlogs.room') }}">
-                                Room chatlogs
+                    @if(hasPermission('edit_user'))
+                        <x-navigation.navigation-item :classes="request()->routeIs('users.*') ? 'active' : ''">
+                            <a href="{{ route('users.index') }}">
+                                <x-icons.users-icon />
+                                <span>User Management</span>
                             </a>
-                        </x-navigation.dropdown-child>
+                        </x-navigation.navigation-item>
+                    @endif
 
-                        <x-navigation.dropdown-child>
-                            <a href="{{ route('chatlogs.private') }}">
-                                Private chatlogs
+                    @if(hasPermission('manage_wordfilter'))
+                        <x-navigation.navigation-item :classes="request()->routeIs('wordfilter.*') ? 'active' : ''">
+                            <a href="{{ route('wordfilter.index') }}">
+                                <x-icons.wordfilter-icon />
+                                <span>Wordfilter Management</span>
                             </a>
-                        </x-navigation.dropdown-child>
-                    </x-navigation.dropdown-menu>
+                        </x-navigation.navigation-item>
+                    @endif
+
+                    @if(hasPermission('manage_bans'))
+                        <x-navigation.navigation-item :classes="request()->routeIs('bans.*') ? 'active' : ''">
+                            <a href="{{ route('bans.index') }}">
+                                <x-icons.denied-icon />
+                                <span>Ban Management</span>
+                            </a>
+                        </x-navigation.navigation-item>
+                    @endif
+
+                    @if(hasPermission('manage_staff_applications'))
+                        <x-navigation.navigation-item :classes="request()->routeIs('staff-applications.*') ? 'active' : ''">
+                            <a href="{{ route('staff-applications.index') }}">
+                                <x-icons.document-icon />
+                                <span>Staff Applications</span>
+                            </a>
+                        </x-navigation.navigation-item>
+                    @endif
+
+                    @if(hasPermission('manage_private_chatlogs') || hasPermission('manage_room_chatlogs'))
+                        <x-navigation.dropdown-menu :classes="request()->routeIs('articles.*') ? 'active' : ''">
+                            <x-slot:parent>
+                                <x-icons.chat-icon />
+                                <span>Chatlogs</span>
+                            </x-slot:parent>
+
+                            @if(hasPermission('manage_room_chatlogs'))
+                                <x-navigation.dropdown-child>
+                                    <a href="{{ route('chatlogs.room') }}">
+                                        Room chatlogs
+                                    </a>
+                                </x-navigation.dropdown-child>
+                            @endif
+
+                            @if(hasPermission('manage_private_chatlogs') )
+                                <x-navigation.dropdown-child>
+                                    <a href="{{ route('chatlogs.private') }}">
+                                        Private chatlogs
+                                    </a>
+                                </x-navigation.dropdown-child>
+                            @endif
+                        </x-navigation.dropdown-menu>
+
+                    @endif
                 </x-navigation.navigation-section>
 
-                <x-navigation.navigation-section>
-                    <x-slot:header>
-                        CMS
-                    </x-slot:header>
+                @if(hasPermission('manage_website_settings') || hasPermission('manage_website_whitelists') || hasPermission('manage_website_blacklists') || hasPermission('write_article'))
+                    <x-navigation.navigation-section>
+                        <x-slot:header>
+                            CMS
+                        </x-slot:header>
 
-                    <x-navigation.navigation-item :classes="request()->routeIs('website-settings.*') ? 'active' : ''">
-                        <a href="{{ route('website-settings.index') }}">
-                            <x-icons.settings-icon/>
-                            <span>{{ __('Website Settings') }}</span>
-                        </a>
-                    </x-navigation.navigation-item>
+                        @if(hasPermission('manage_website_settings'))
+                            <x-navigation.navigation-item :classes="request()->routeIs('website-settings.*') ? 'active' : ''">
+                                <a href="{{ route('website-settings.index') }}">
+                                    <x-icons.settings-icon/>
+                                    <span>{{ __('Website Settings') }}</span>
+                                </a>
+                            </x-navigation.navigation-item>
+                        @endif
 
-                    <x-navigation.navigation-item :classes="request()->routeIs('website-whitelist.*') ? 'active' : ''">
-                        <a href="{{ route('website-whitelist.index') }}">
-                            <x-icons.fingerprint-icon />
-                            <span>{{ __('Website IP whitelist') }}</span>
-                        </a>
-                    </x-navigation.navigation-item>
+                        @if(hasPermission('manage_website_whitelists'))
+                            <x-navigation.navigation-item :classes="request()->routeIs('website-whitelist.*') ? 'active' : ''">
+                                <a href="{{ route('website-whitelist.index') }}">
+                                    <x-icons.fingerprint-icon />
+                                    <span>{{ __('Website IP whitelist') }}</span>
+                                </a>
+                            </x-navigation.navigation-item>
+                        @endif
 
-                    <x-navigation.navigation-item :classes="request()->routeIs('website-blacklist.*') ? 'active' : ''">
-                        <a href="{{ route('website-blacklist.index') }}">
-                            <x-icons.denied-icon />
-                            <span>{{ __('Website IP blacklist') }}</span>
-                        </a>
-                    </x-navigation.navigation-item>
+                        @if(hasPermission('manage_website_blacklists'))
+                            <x-navigation.navigation-item :classes="request()->routeIs('website-blacklist.*') ? 'active' : ''">
+                                <a href="{{ route('website-blacklist.index') }}">
+                                    <x-icons.denied-icon />
+                                    <span>{{ __('Website IP blacklist') }}</span>
+                                </a>
+                            </x-navigation.navigation-item>
+                        @endif
 
-                    <x-navigation.dropdown-menu :classes="request()->routeIs('articles.*') ? 'active' : ''">
-                        <x-slot:parent>
-                            <x-icons.article-icon />
-                            <span>Article management</span>
-                        </x-slot:parent>
+                       @if(hasPermission('write_article'))
+                            <x-navigation.dropdown-menu :classes="request()->routeIs('articles.*') ? 'active' : ''">
+                                <x-slot:parent>
+                                    <x-icons.article-icon />
+                                    <span>Article management</span>
+                                </x-slot:parent>
 
-                        <x-navigation.dropdown-child>
-                            <a href="{{ route('articles.index') }}">
-                                All Articles
+                                <x-navigation.dropdown-child>
+                                    <a href="{{ route('articles.index') }}">
+                                        All Articles
+                                    </a>
+                                </x-navigation.dropdown-child>
+
+                                <x-navigation.dropdown-child>
+                                    <a href="{{ route('articles.create') }}">
+                                        Create Article
+                                    </a>
+                                </x-navigation.dropdown-child>
+                            </x-navigation.dropdown-menu>
+                       @endif
+                    </x-navigation.navigation-section>
+                @endif
+
+                @if(hasPermission('manage_catalog_pages'))
+                    <x-navigation.navigation-section>
+                        <x-slot:header>
+                            Catalog
+                        </x-slot:header>
+
+                        <x-navigation.navigation-item :classes="request()->routeIs('catalog.*') ? 'active' : ''">
+                            <a href="{{ route('catalog-pages.index') }}">
+                                <x-icons.table-icon />
+                                <span>Catalog pages</span>
                             </a>
-                        </x-navigation.dropdown-child>
+                        </x-navigation.navigation-item>
+                    </x-navigation.navigation-section>
+                @endif
 
-                        <x-navigation.dropdown-child>
-                            <a href="{{ route('articles.create') }}">
-                                Create Article
+                @if(hasPermission('manage_emulator_settings') || hasPermission('manage_emulator_texts'))
+                    <x-navigation.navigation-section>
+                        <x-slot:header>
+                            Emulator
+                        </x-slot:header>
+
+                        @if(hasPermission('manage_emulator_settings'))
+                            <x-navigation.navigation-item :classes="request()->routeIs('emulator-settings.*') ? 'active' : ''">
+                                <a href="{{ route('emulator-settings.index') }}">
+                                    <x-icons.settings-icon/>
+                                    <span>Emulator Settings</span>
+                                </a>
+                            </x-navigation.navigation-item>
+                        @endif
+
+                        @if(hasPermission('manage_emulator_texts'))
+                            <x-navigation.navigation-item :classes="request()->routeIs('emulator-texts.*') ? 'active' : ''">
+                                <a href="{{ route('emulator-texts.index') }}">
+                                    <x-icons.text-icon />
+                                    <span>Emulator Text</span>
+                                </a>
+                            </x-navigation.navigation-item>
+                        @endif
+                    </x-navigation.navigation-section>
+                @endif
+
+                @if(hasPermission('view_activity_logs'))
+                    <x-navigation.navigation-section>
+                        <x-slot:header>
+                            Miscellaneous
+                        </x-slot:header>
+
+                        <x-navigation.navigation-item :classes="request()->routeIs('miscellaneous.*') ? 'active' : ''">
+                            <a href="{{ route('activity-logs.index') }}">
+                                <x-icons.text-icon />
+                                <span>Activity Logs</span>
                             </a>
-                        </x-navigation.dropdown-child>
-                    </x-navigation.dropdown-menu>
-                </x-navigation.navigation-section>
-
-                <x-navigation.navigation-section>
-                    <x-slot:header>
-                        Catalog
-                    </x-slot:header>
-
-                    <x-navigation.navigation-item :classes="request()->routeIs('catalog.*') ? 'active' : ''">
-                        <a href="{{ route('catalog-pages.index') }}">
-                            <x-icons.table-icon />
-                            <span>Catalog pages</span>
-                        </a>
-                    </x-navigation.navigation-item>
-
-                    <x-navigation.dropdown-menu>
-                        <x-slot:parent>
-                            <x-icons.catalog-icon />
-                            <span>
-                                Catalog
-                            </span>
-                        </x-slot:parent>
-
-                        <x-navigation.dropdown-child>
-                            <a href="{{ route('articles.index') }}">
-                                Catalog items
-                            </a>
-                        </x-navigation.dropdown-child>
-
-                        <x-navigation.dropdown-child>
-                            <a href="{{ route('articles.create') }}">
-                                Items base
-                            </a>
-                        </x-navigation.dropdown-child>
-
-                        <x-navigation.dropdown-child>
-                            <a href="{{ route('articles.create') }}">
-                                Add furniture
-                            </a>
-                        </x-navigation.dropdown-child>
-                    </x-navigation.dropdown-menu>
-                </x-navigation.navigation-section>
-
-                <x-navigation.navigation-section>
-                    <x-slot:header>
-                        Emulator
-                    </x-slot:header>
-
-                    <x-navigation.navigation-item :classes="request()->routeIs('emulator-settings.*') ? 'active' : ''">
-                        <a href="{{ route('emulator-settings.index') }}">
-                            <x-icons.settings-icon/>
-                            <span>Emulator Settings</span>
-                        </a>
-                    </x-navigation.navigation-item>
-
-                    <x-navigation.navigation-item :classes="request()->routeIs('emulator-texts.*') ? 'active' : ''">
-                        <a href="{{ route('emulator-texts.index') }}">
-                            <x-icons.text-icon />
-                            <span>Emulator Text</span>
-                        </a>
-                    </x-navigation.navigation-item>
-                </x-navigation.navigation-section>
-
-                <x-navigation.navigation-section>
-                    <x-slot:header>
-                        Miscellaneous
-                    </x-slot:header>
-
-                    <x-navigation.navigation-item :classes="request()->routeIs('miscellaneous.*') ? 'active' : ''">
-                        <a href="{{ route('activity-logs.index') }}">
-                            <x-icons.text-icon />
-                            <span>Activity Logs</span>
-                        </a>
-                    </x-navigation.navigation-item>
-                </x-navigation.navigation-section>
+                        </x-navigation.navigation-item>
+                    </x-navigation.navigation-section>
+                @endif
             </ul>
         </div>
     </nav>
@@ -309,6 +323,7 @@
         $('[data-toggle="tooltip"]').tooltip()
     })
 </script>
+
 
 @stack('javascript')
 </body>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CatalogPageRequest;
 use App\Models\CatalogPage;
+use App\Services\RconService;
 use Illuminate\Http\Request;
 
 class CatalogPagesController extends Controller
@@ -79,5 +80,20 @@ class CatalogPagesController extends Controller
         $catalogPage->delete();
 
         return redirect()->back()->with('success', 'The catalog page has been removed!');
+    }
+
+    public function updateRcon(RconService $rconService)
+    {
+        if (!hasPermission('manage_catalog_pages')) {
+            abort(403);
+        }
+
+        if (!$rconService->isConnected()) {
+            return redirect()->back()->withErrors('The RCON connection could not be established!');
+        }
+
+        $rconService->updateCatalog();
+
+        return redirect()->back()->with('success', 'The catalog has been updated!');
     }
 }

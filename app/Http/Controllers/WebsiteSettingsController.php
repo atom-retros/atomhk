@@ -72,7 +72,7 @@ class WebsiteSettingsController extends Controller
 
     public function search(Request $request)
     {
-        if (!hasPermission(Auth::user(), 'manage_website_settings')) {
+        if (!hasPermission('manage_website_settings')) {
             abort(401);
         }
 

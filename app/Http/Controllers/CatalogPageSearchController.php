@@ -11,7 +11,7 @@ class CatalogPageSearchController extends Controller
 {
     public function search(Request $request): View
     {
-        if (!hasPermission(Auth::user(), 'manage_catalog_pages')) {
+        if (!hasPermission('manage_catalog_pages')) {
             abort(401);
         }
 

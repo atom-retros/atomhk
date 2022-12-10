@@ -11,6 +11,10 @@ class UserCurrency extends Model
     protected $primaryKey = 'user_id';
     public $timestamps = false;
 
+    protected $fillable = [
+        'amount',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'id');

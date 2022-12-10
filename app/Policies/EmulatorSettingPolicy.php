@@ -12,22 +12,22 @@ class EmulatorSettingPolicy
 
     public function viewAny(User $user)
     {
-        return hasPermission($user, 'manage_emulator_settings');
+        return hasPermission('manage_emulator_settings');
     }
 
     public function create(User $user)
     {
-        return hasPermission($user, 'manage_emulator_settings');
+        return hasPermission('manage_emulator_settings');
     }
 
     public function update(User $user)
     {
-        return hasPermission($user, 'manage_emulator_settings');
+        return hasPermission('manage_emulator_settings');
     }
 
 
     public function delete(User $user)
     {
-        return hasPermission($user, 'manage_emulator_settings');
+        return hasPermission('manage_emulator_settings');
     }
 }

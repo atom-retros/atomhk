@@ -10,61 +10,28 @@ class ArticlePolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view any models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function viewAny(User $user)
+    public function viewAny()
     {
-        return hasPermission($user, 'write_article');
+        return hasPermission('write_article');
     }
 
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\WebsiteArticle  $websiteArticle
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function view(User $user, WebsiteArticle $websiteArticle)
+    public function view()
     {
-        return hasPermission($user, 'edit_article');
+        return hasPermission('edit_article');
     }
 
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function create(User $user)
+    public function create()
     {
-        return hasPermission($user, 'write_article');
+        return hasPermission('write_article');
     }
 
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\WebsiteArticle  $websiteArticle
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function update(User $user, WebsiteArticle $websiteArticle)
+    public function update()
     {
-        return hasPermission($user, 'edit_article');
+        return hasPermission('edit_article');
     }
 
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\WebsiteArticle  $websiteArticle
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function delete(User $user, WebsiteArticle $websiteArticle)
+    public function delete()
     {
-        return hasPermission($user, 'delete_article');
+        return hasPermission('delete_article');
     }
 }

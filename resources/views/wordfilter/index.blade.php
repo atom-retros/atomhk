@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-between">
             <h3 class="text-dark mb-4">{{ __('Wordfilter Management') }}</h3>
 
-            @if(hasPermission(auth()->user(), 'manage_wordfilter'))
+            @if(hasPermission('manage_wordfilter'))
                 <div class="d-flex" style="gap: 10px;">
                     <a href="{{ route('wordfilter.create') }}">
                         <x-elements.primary-button>
@@ -55,21 +55,21 @@
 
                                     <td>
                                         <div class="btn-group" role="group">
-                                            @if(hasPermission(auth()->user(), 'manage_wordfilter'))
+                                            @if(hasPermission('manage_wordfilter'))
                                                 <a href="{{ route('wordfilter.edit', $word->key) }}">
-                                                    <x-elements.primary-button type="button">
-                                                        <i class="fa fa-pencil"></i>
+                                                    <x-elements.primary-button type="button" tooltipText="{{ __('Edit word') }}">
+                                                        <i class="fas fa-edit"></i>
                                                     </x-elements.primary-button>
                                                 </a>
                                             @endif
 
-                                            @if(hasPermission(auth()->user(), 'manage_wordfilter'))
-                                                <form class="ml-2" action="{{ route('wordfilter.destroy', $word->key) }}" method="POST">
+                                            @if(hasPermission('manage_wordfilter'))
+                                                <form class="ml-2" id="deleteWordForm" action="{{ route('wordfilter.destroy', $word->key) }}" method="POST"  onSubmit="return confirm('Are you sure you want to delete this word?');">
                                                     @method('DELETE')
                                                     @csrf
 
-                                                    <x-elements.danger-button>
-                                                        <i class="fa fa-trash"></i>
+                                                    <x-elements.danger-button tooltipText="{{ __('Delete word') }}">
+                                                        <i class="fas fa-trash"></i>
                                                     </x-elements.danger-button>
                                                 </form>
                                             @endif

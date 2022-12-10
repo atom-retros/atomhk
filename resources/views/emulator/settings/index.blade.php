@@ -27,7 +27,7 @@
                </div>
 
               <div class="col-12 col-lg-6 d-flex justify-content-end">
-                  @if(hasPermission(auth()->user(), 'manage_emulator_settings'))
+                  @if(hasPermission('manage_emulator_settings'))
                       <div class="d-flex" style="gap: 10px;">
                           <a href="{{ route('emulator-settings.create') }}">
                               <button class="btn btn-primary d-flex align-self-start">{{ __('Create emulator setting') }}</button>
@@ -65,22 +65,22 @@
                                     <td>{{ $setting->value }}</td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                            @if(hasPermission(auth()->user(), 'manage_emulator_settings'))
+                                            @if(hasPermission('manage_emulator_settings'))
                                                 <a href="{{ route('emulator-settings.edit', $setting->setting) }}">
-                                                    <button class="btn btn-primary" type="button">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </button>
+                                                    <x-elements.primary-button tooltip-text="{{ __('Edit setting') }}">
+                                                        <i class="fas fa-edit"></i>
+                                                    </x-elements.primary-button>
                                                 </a>
                                             @endif
 
-                                            @if(hasPermission(auth()->user(), 'manage_emulator_settings'))
-                                                <form class="ml-2" id="deleteSettingForm" action="{{ route('emulator-settings.delete', $setting->setting) }}" method="POST" onSubmit="event.preventDefault(); return confirmDeleteSetting()">
+                                            @if(hasPermission('manage_emulator_settings'))
+                                                <form class="ml-2" id="deleteSettingForm" action="{{ route('emulator-settings.delete', $setting->setting) }}" method="POST"  onSubmit="return confirm('Are you sure you want to delete this emulator setting?');">
                                                     @method('DELETE')
                                                     @csrf
 
-                                                    <button class="btn btn-danger" type="submit">
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
+                                                    <x-elements.danger-button tooltip-text="{{ __('Delete setting') }}">
+                                                        <i class="fas fa-trash"></i>
+                                                    </x-elements.danger-button>
                                                 </form>
                                             @endif
                                         </div>
@@ -97,26 +97,4 @@
             </div>
         </div>
     </div>
-
-    @push('javascript')
-        <script>
-            function confirmDeleteSetting(e) {
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.querySelector('#deleteSettingForm').submit();
-                    }
-                })
-
-                e.preventDefault();
-            }
-        </script>
-    @endpush
 </x-layout.app>

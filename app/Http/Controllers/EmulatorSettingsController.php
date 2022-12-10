@@ -80,13 +80,17 @@ class EmulatorSettingsController extends Controller
         ]);
     }
 
-    public function updateRcon(RconService $rcon)
+    public function updateRcon(RconService $rconService)
     {
-        if (!hasPermission(Auth::user(), 'manage_emulator_settings')) {
+        if (!hasPermission('manage_emulator_settings')) {
             abort(403);
         }
 
-        $rcon->updateConfig(Auth::user(), ':update_config');
+        if (!$rconService->isConnected()) {
+            return redirect()->back()->withErrors('The RCON connection could not be established!');
+        }
+
+        $rconService->updateConfig(Auth::user(), ':update_config');
 
         return redirect()->back()->with('success', 'RCON executed! If you have the ":update_config" permission in-game, the emulator settings changes will now be live on the hotel.');
     }

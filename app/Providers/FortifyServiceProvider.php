@@ -56,7 +56,8 @@ class FortifyServiceProvider extends ServiceProvider
                 ]);
             }
 
-            if (! hasPermission($user,'can_login')) {
+            $loginPermission = HousekeepingPermission::where('permission', 'can_login')->first();
+            if (is_null($loginPermission) || $user->rank < $loginPermission->min_rank) {
                 throw ValidationException::withMessages([
                     Fortify::username() => __('You are not eligible to login to the housekeeping.'),
                 ]);

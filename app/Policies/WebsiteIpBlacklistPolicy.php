@@ -12,21 +12,21 @@ class WebsiteIpBlacklistPolicy
 
     public function viewAny(User $user): bool
     {
-        return hasPermission($user, 'manage_website_blacklists');
+        return hasPermission('manage_website_blacklists');
     }
 
     public function create(User $user): bool
     {
-        return hasPermission($user, 'manage_website_blacklists');
+        return hasPermission('manage_website_blacklists');
     }
 
     public function update(User $user, WebsiteIpBlacklist $websiteIpBlacklist): bool
     {
-        return hasPermission($user, 'manage_website_blacklists');
+        return hasPermission('manage_website_blacklists');
     }
 
     public function delete(User $user, WebsiteIpBlacklist $websiteIpBlacklist): bool
     {
-        return hasPermission($user, 'manage_website_blacklists');
+        return hasPermission('manage_website_blacklists');
     }
 }

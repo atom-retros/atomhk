@@ -9,7 +9,7 @@ class ActivityLogController extends Controller
 {
     public function __invoke()
     {
-        if (!hasPermission(Auth::user(), 'view_activity_logs')) {
+        if (!hasPermission('view_activity_logs')) {
             abort(401);
         }
 

@@ -17,7 +17,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        return hasPermission($user, 'edit_user');
+        return hasPermission('edit_user');
     }
 
     /**
@@ -28,7 +28,7 @@ class UserPolicy
      */
     public function view(User $user)
     {
-        return hasPermission($user, 'edit_user');
+        return hasPermission('edit_user');
     }
 
     /**
@@ -39,7 +39,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        return hasPermission($user, 'write_article');
+        return hasPermission('write_article');
     }
 
     /**
@@ -50,7 +50,7 @@ class UserPolicy
      */
     public function update(User $user)
     {
-        return hasPermission($user, 'edit_user');
+        return hasPermission('edit_user');
     }
 
     /**
@@ -61,6 +61,6 @@ class UserPolicy
      */
     public function delete(User $user)
     {
-        return hasPermission($user, 'delete_user');
+        return hasPermission('delete_user');
     }
 }

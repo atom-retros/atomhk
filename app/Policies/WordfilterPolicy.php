@@ -18,7 +18,7 @@ class WordfilterPolicy
      */
     public function viewAny(User $user)
     {
-        return hasPermission($user, 'manage_wordfilter');
+        return hasPermission('manage_wordfilter');
     }
 
     /**
@@ -30,7 +30,7 @@ class WordfilterPolicy
      */
     public function view(User $user, Wordfilter $wordfilter)
     {
-        return hasPermission($user, 'manage_wordfilter');
+        return hasPermission('manage_wordfilter');
     }
 
     /**
@@ -41,7 +41,7 @@ class WordfilterPolicy
      */
     public function create(User $user)
     {
-        return hasPermission($user, 'manage_wordfilter');
+        return hasPermission('manage_wordfilter');
     }
 
     /**
@@ -53,7 +53,7 @@ class WordfilterPolicy
      */
     public function update(User $user, Wordfilter $wordfilter)
     {
-        return hasPermission($user, 'manage_wordfilter');
+        return hasPermission('manage_wordfilter');
     }
 
     /**
@@ -65,6 +65,6 @@ class WordfilterPolicy
      */
     public function delete(User $user, Wordfilter $wordfilter)
     {
-        return hasPermission($user, 'manage_wordfilter');
+        return hasPermission('manage_wordfilter');
     }
 }
