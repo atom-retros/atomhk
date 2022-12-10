@@ -105,6 +105,11 @@ class HousekeepingPermissionSeeder extends Seeder
                 'min_rank' => 7,
                 'description' => 'The minimum rank required before being able to view activity logs',
             ],
+            [
+                'permission' => 'manage_staff_applications',
+                'min_rank' => 7,
+                'description' => 'The minimum rank required before being able to manage staff applications',
+            ],
         ];
 
         foreach ($permissions as $permission) {

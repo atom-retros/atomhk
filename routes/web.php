@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmulatorSettingsController;
 use App\Http\Controllers\EmulatorTextsController;
 use App\Http\Controllers\PrivateChatlogsController;
+use App\Http\Controllers\StaffApplicationsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPasswordController;
 use App\Http\Controllers\WebsiteIpBlacklistsController;
@@ -42,6 +43,14 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/{user}/edit/password', [UserPasswordController::class, 'edit'])->name('users.password.edit');
         Route::put('/{user}/edit/password', [UserPasswordController::class, 'update'])->name('users.password.update');
+    });
+
+    Route::prefix('staff-applications')->group(function () {
+        Route::get('/', [StaffApplicationsController::class, 'index'])->name('staff-applications.index');
+        Route::get('/{application}', [StaffApplicationsController::class, 'show'])->name('staff-applications.show');
+        Route::put('/{application}/accept', [StaffApplicationsController::class, 'accept'])->name('staff-applications.accept');
+        Route::put('/{application}/reject', [StaffApplicationsController::class, 'reject'])->name('staff-applications.reject');
+        Route::put('/{application}/reset', [StaffApplicationsController::class, 'reset'])->name('staff-applications.reset');
     });
 
     // Article management
@@ -91,6 +100,9 @@ Route::middleware('auth')->group(function () {
 
         // Page search
         Route::get('/search', [CatalogPageSearchController::class, 'search'])->name('catalog-page.search');
+
+        // Update through rcon
+        Route::post('/update', [CatalogPagesController::class, 'updateRcon'])->name('catalog-pages.rcon-update');
     });
 
     // Settings routes

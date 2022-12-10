@@ -134,6 +134,8 @@ class RconService
 
     public function isConnected(): bool
     {
+        $this->connect();
+
         return $this->connected;
     }
 
@@ -147,7 +149,7 @@ class RconService
             return false;
         }
 
-        if (!$this->connected = @socket_connect($this->socket, config('habbo.rcon.host'), config('habbo.rcon.port'))) {
+        if (!@socket_connect($this->socket, config('habbo.rcon.host'), config('habbo.rcon.port'))) {
             return false;
         }
 

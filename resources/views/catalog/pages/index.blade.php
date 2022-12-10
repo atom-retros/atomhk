@@ -1,9 +1,7 @@
 <x-layout.app>
-    @push('title', 'Users')
+    @push('title', 'Catalog pages')
 
     <div class="container-fluid">
-        <h3 class="text-dark mb-4">{{ __('Catalog pages') }}</h3>
-
         <x-messages.flash-messages />
 
         <div class="row mb-4">
@@ -11,7 +9,7 @@
                 <i class="far fa-question-circle"></i>
             </div>
 
-            <div class="input-group">
+            <div class="input-group d-flex justify-content-between">
                 <form action="{{ route('catalog-page.search') }}" method="GET">
                     <div class="d-block d-md-flex">
                         <div class="col-12 col-lg-4">
@@ -33,6 +31,14 @@
                             </button>
                         </div>
                     </div>
+                </form>
+
+                <form action="{{ route('catalog-pages.rcon-update') }}" method="POST" class="mr-2">
+                    @csrf
+
+                    <x-elements.danger-button>
+                        {{ __('Update catalog (RCON)') }}
+                    </x-elements.danger-button>
                 </form>
             </div>
         </div>

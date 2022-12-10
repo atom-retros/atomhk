@@ -65,7 +65,7 @@ class WordfilterController extends Controller
 
         if (!$rconService->isConnected()) {
             return redirect()->back()->withErrors([
-                'message' => __('Failed to connect to the RCON service, make the emulator is running and the correct RCON credentials has been applied.')
+                'message' => __('The RCON connection could not be established!')
             ]);
         }
 

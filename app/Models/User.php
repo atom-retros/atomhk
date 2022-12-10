@@ -69,6 +69,11 @@ class User extends Authenticatable
             ]);
     }
 
+    public function sessions(): HasMany
+    {
+        return $this->hasMany(Session::class);
+    }
+
     public function updateCurrency(string $currency, int $amount): void
     {
         $type = match ($currency) {
