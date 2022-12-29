@@ -8,7 +8,7 @@ class AddEventColumnToActivityLogTable extends Migration
 {
     public function up()
     {
-        if (config('habbo.core.run_default_migrations')) {
+        if (!config('habbo.core.using_atom_cms') || (Schema::hasTable(config('activitylog.table_name')) && !Schema::hasColumn(config('activitylog.table_name'), 'event'))) {
             Schema::connection(config('activitylog.database_connection'))->table(
                 config('activitylog.table_name'),
                 function (Blueprint $table) {

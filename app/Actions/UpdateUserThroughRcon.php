@@ -29,10 +29,10 @@ class UpdateUserThroughRcon
         }
 
         if ($this->user->motto !== $this->request->input('motto') && $this->user->online === '1') {
-            $this->rconService->setMotto($this->user, $this->request->input('motto'));
+            $this->rconService->setMotto($this->user, $this->request->input('motto') != '' ? $this->request->input('motto') : '');
         } else {
             $this->user->update([
-                'motto' => $this->request->input('motto'),
+                'motto' => $this->request->input('motto') != '' ? $this->request->input('motto') : '',
             ]);
         }
 

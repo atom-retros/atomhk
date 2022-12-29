@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        if (config('habbo.core.run_default_migrations')) {
+        if (!config('habbo.core.using_atom_cms') || !Schema::hasTable('personal_access_tokens')) {
             Schema::create('personal_access_tokens', function (Blueprint $table) {
                 $table->id();
                 $table->morphs('tokenable');

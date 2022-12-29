@@ -70,7 +70,7 @@
                         </x-navigation.navigation-item>
                     @endif
 
-                    @if(hasPermission('manage_staff_applications'))
+                    @if(hasPermission('manage_staff_applications') && hasTable('website_staff_applications') && config('habbo.core.using_atom_cms'))
                         <x-navigation.navigation-item :classes="request()->routeIs('staff-applications.*') ? 'active' : ''">
                             <a href="{{ route('staff-applications.index') }}">
                                 <x-icons.document-icon />
@@ -112,7 +112,7 @@
                             CMS
                         </x-slot:header>
 
-                        @if(hasPermission('manage_website_settings'))
+                        @if(hasPermission('manage_website_settings') && hasTable('website_settings') && config('habbo.core.using_atom_cms'))
                             <x-navigation.navigation-item :classes="request()->routeIs('website-settings.*') ? 'active' : ''">
                                 <a href="{{ route('website-settings.index') }}">
                                     <x-icons.settings-icon/>
@@ -121,7 +121,7 @@
                             </x-navigation.navigation-item>
                         @endif
 
-                        @if(hasPermission('manage_website_whitelists'))
+                        @if(hasPermission('manage_website_whitelists') && hasTable('website_ip_whitelist') && config('habbo.core.using_atom_cms'))
                             <x-navigation.navigation-item :classes="request()->routeIs('website-whitelist.*') ? 'active' : ''">
                                 <a href="{{ route('website-whitelist.index') }}">
                                     <x-icons.fingerprint-icon />
@@ -130,7 +130,7 @@
                             </x-navigation.navigation-item>
                         @endif
 
-                        @if(hasPermission('manage_website_blacklists'))
+                        @if(hasPermission('manage_website_blacklists') && hasTable('website_ip_blacklist') && config('habbo.core.using_atom_cms'))
                             <x-navigation.navigation-item :classes="request()->routeIs('website-blacklist.*') ? 'active' : ''">
                                 <a href="{{ route('website-blacklist.index') }}">
                                     <x-icons.denied-icon />

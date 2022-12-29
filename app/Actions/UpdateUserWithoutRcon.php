@@ -27,11 +27,12 @@ class UpdateUserWithoutRcon
 
         if ($this->user->motto !== $this->request->input('motto')) {
             $this->user->update([
-                'motto' => $this->request->input('motto'),
+                'motto' => $this->request->input('motto') != '' ? $this->request->input('motto') : '',
             ]);
         }
 
         if ($this->user->rank !== $this->request->input('rank')) {
+
             $this->user->update([
                 'rank' => $this->request->input('rank'),
             ]);

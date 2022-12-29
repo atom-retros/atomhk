@@ -9,6 +9,7 @@ use App\Services\PermissionsService;
 use App\Services\WebsiteSettingsService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Schema;
 
 if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
     $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
@@ -44,5 +45,12 @@ if (!function_exists('hasPermission')) {
     function hasPermission(string $permission): string
     {
         return app(PermissionsService::class)->getOrDefault($permission);
+    }
+}
+
+if (!function_exists('hasTable')) {
+    function hasTable(string $table): bool
+    {
+        return Schema::hasTable($table);
     }
 }

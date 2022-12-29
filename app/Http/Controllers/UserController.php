@@ -38,7 +38,7 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user, RconService $rconService)
     {
-        if ($rconService->isConnected()) {
+        if (!$rconService->isConnected()) {
             $updateWithoutRcon = new UpdateUserWithoutRcon($request, $user);
             if (!$updateWithoutRcon->execute()) {
                 return redirect()->back()->withErrors([

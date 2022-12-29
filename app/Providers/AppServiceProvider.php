@@ -18,10 +18,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(
-            WebsiteSettingsService::class,
-            fn () => new WebsiteSettingsService()
-        );
+        if (config('habbo.core.using_atom_cms') && hasTable('website_settings')) {
+            $this->app->singleton(
+                WebsiteSettingsService::class,
+                fn () => new WebsiteSettingsService()
+            );
+        }
 
         $this->app->singleton(
             HousekeepingSettingsService::class,

@@ -12,7 +12,9 @@ class RconService
 
     public function sendPacket(string $key, $data = null)
     {
-        $this->connect();
+        if (!$this->connect()) {
+            return false;
+        }
 
         $data = json_encode(['key' => $key, 'data' => $data]);
 
@@ -141,6 +143,7 @@ class RconService
 
     protected function connect(): bool
     {
+
         if (!function_exists('socket_create')) {
             return false;
         }
@@ -152,6 +155,7 @@ class RconService
         if (!@socket_connect($this->socket, config('habbo.rcon.host'), config('habbo.rcon.port'))) {
             return false;
         }
+
 
         return $this->connected = true;
     }

@@ -7,13 +7,20 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up()
     {
-        Schema::create('website_articles', function (Blueprint $table) {
-            $table->id();
+        if (config('habbo.core.using_atom_cms') && Schema::hasTable('website_staff_applications')) {
+            Schema::create('website_articles', function (Blueprint $table) {
+                $table->id();
+                $table->integer('user_id');
+                $table->string('slug')->unique();
+                $table->string('title');
+                $table->string('short_story');
+                $table->longText('full_story');
+                $table->string('image');
+                $table->timestamps();
 
-            
-
-            $table->timestamps();
-        });
+                $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            });
+        }
     }
 
     public function down()

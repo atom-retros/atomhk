@@ -63,7 +63,7 @@ class FortifyServiceProvider extends ServiceProvider
                 ]);
             }
 
-            if (cmsSetting('force_staff_2fa') === '1' && is_null($user->two_factor_secret)) {
+            if (config('habbo.core.using_atom_cms') && hasTable('website_settings') && cmsSetting('force_staff_2fa') === '1' && is_null($user->two_factor_secret)) {
                 throw ValidationException::withMessages([
                     Fortify::username() => __('You must go to the hotel and enable 2factor authentication before logging into the housekeeping.'),
                 ]);

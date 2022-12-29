@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up()
     {
-       if (Schema::hasTable('website_staff_applications')) {
+        if (config('habbo.core.using_atom_cms') && Schema::hasTable('website_staff_applications')) {
            Schema::table('website_staff_applications', function (Blueprint $table) {
                $table->integer('old_rank_id')->nullable()->after('rank_id');
 
