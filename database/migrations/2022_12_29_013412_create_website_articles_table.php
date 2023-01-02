@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up()
     {
-        if (config('habbo.core.using_atom_cms') && Schema::hasTable('website_staff_applications')) {
+        if (config('habbo.core.using_atom_cms') && !Schema::hasTable('website_articles')) {
             Schema::create('website_articles', function (Blueprint $table) {
                 $table->id();
                 $table->integer('user_id');
