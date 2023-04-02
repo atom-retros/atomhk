@@ -248,11 +248,11 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right p-3 animated--grow-in" role="menu" aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto navbar-search w-100">
+                                <form class="form-inline mr-auto navbar-search w-100" method="GET" action="{{ route('users.search') }}">
                                     <div class="input-group">
                                         <input class="bg-light form-control border-0 small" type="text" placeholder="Search for a username">
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary py-0" type="button">
+                                            <button class="btn btn-primary py-0" type="submit">
                                                 <i  class="fas fa-search"></i>
                                             </button>
                                         </div>
