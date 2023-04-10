@@ -6,6 +6,10 @@
 </div>
 
 
+**Disclaimer**
+
+Atom HK is purely an educational project. I am not responsible for how or where Atom HK is being used.
+
 ### What is Atom HK?
 Atom HK is a standalone Habbo retro housekeeping, aiming to provide an easy and solid experience for you and your staff to manage various aspects of your hotel. It offers an easy development experience thanks to the use of Laravel & Bootstrap.
 
