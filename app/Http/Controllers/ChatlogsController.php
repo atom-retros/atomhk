@@ -19,7 +19,7 @@ class ChatlogsController extends Controller
     {
         return view('chatlogs.room', [
             'chatlogs' => ChatlogRoom::query()
-                ->latest('timestamp')
+                ->orderByDesc('timestamp')
                 ->with(['user:id,username,look', 'room'])
                 ->paginate(15),
         ]);

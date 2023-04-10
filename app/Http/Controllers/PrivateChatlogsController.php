@@ -17,7 +17,7 @@ class PrivateChatlogsController extends Controller
     {
         return view('chatlogs.private', [
             'chatlogs' => ChatlogPrivate::query()
-                ->latest('timestamp')
+                ->orderByDesc('timestamp')
                 ->with(['sender:id,username', 'receiver:id,username'])
                 ->paginate(15),
         ]);
