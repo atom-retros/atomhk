@@ -48,7 +48,7 @@ class PrivateChatlogsController extends Controller
         }
 
         return view('chatlogs.private', [
-            'chatlogs' => $user->privateChatlogsSent()->latest('timestamp')->paginate(15),
+            'chatlogs' => $user->privateChatlogsSent()->orderByDesc('timestamp')->paginate(15),
         ]);
     }
 
@@ -64,7 +64,7 @@ class PrivateChatlogsController extends Controller
         }
 
         return view('chatlogs.private', [
-            'chatlogs' => $user->privateChatlogsReceived()->latest('timestamp')->paginate(15),
+            'chatlogs' => $user->privateChatlogsReceived()->orderByDesc('timestamp')->paginate(15),
         ]);
     }
 
@@ -72,7 +72,7 @@ class PrivateChatlogsController extends Controller
     {
         $chatlogs = ChatlogPrivate::query()
             ->where('message' ,'like', '%' . $input . '%')
-            ->latest('timestamp')
+            ->orderByDesc('timestamp')
             ->with(['sender:id,username', 'receiver:id,username'])
             ->paginate(15);
 

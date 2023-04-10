@@ -42,7 +42,7 @@ class ChatlogsController extends Controller
         return view('chatlogs.room', [
             'chatlogs' => ChatlogRoom::query()
                 ->where('message', 'like', '%' . $input . '%')
-                ->latest('timestamp')
+                ->orderByDesc('timestamp')
                 ->with(['user:id,username,look', 'room:id,name'])
                 ->paginate(15),
         ]);
@@ -61,7 +61,7 @@ class ChatlogsController extends Controller
         return view('chatlogs.room', [
             'chatlogs' =>  ChatlogRoom::query()
                 ->whereIn('user_from_id', $users)
-                ->latest('timestamp')
+                ->orderByDesc('timestamp')
                 ->with(['user:id,username,look', 'room'])
                 ->paginate(15),
         ]);
@@ -83,7 +83,7 @@ class ChatlogsController extends Controller
         return view('chatlogs.room', [
             'chatlogs' => ChatlogRoom::query()
                 ->whereIn('room_id', $room)
-                ->latest('timestamp')
+                ->orderByDesc('timestamp')
                 ->with(['user:id,username,look', 'room'])
                 ->paginate(15),
         ]);
