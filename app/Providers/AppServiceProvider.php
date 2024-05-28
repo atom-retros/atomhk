@@ -18,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Check if DB connection is active
         if (config('habbo.core.using_atom_cms') && hasTable('website_settings')) {
             $this->app->singleton(
                 WebsiteSettingsService::class,
