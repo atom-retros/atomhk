@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\WordfilterFormRequest;
 use App\Models\Wordfilter;
+use App\Repositories\WordfilterRepository;
 use App\Services\RconService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
 class WordfilterController extends Controller
 {
-    public function __construct()
+    public function __construct(private readonly WordfilterRepository $wordfilterRepository)
     {
         $this->authorizeResource(Wordfilter::class, 'key');
     }
@@ -17,7 +19,7 @@ class WordfilterController extends Controller
     public function index()
     {
         return view('wordfilter.index', [
-            'words' => Wordfilter::query()->paginate(15),
+            'words' => $this->wordfilterRepository->fetchAll(),
         ]);
     }
 
@@ -26,9 +28,9 @@ class WordfilterController extends Controller
         return view('wordfilter.create');
     }
 
-    public function store(WordfilterFormRequest $request, RconService $rcon)
+    public function store(WordfilterFormRequest $request): RedirectResponse
     {
-        Wordfilter::create($request->validated());
+        $this->wordfilterRepository->store($request->validated());
 
         return to_route('wordfilter.index')
             ->with('success', __(':word has been added to the wordfilter', ['word' => $request->input('key')]));
@@ -41,37 +43,24 @@ class WordfilterController extends Controller
         ]);
     }
 
-    public function update(Wordfilter $key, WordfilterFormRequest $request, RconService $rcon)
+    public function update(Wordfilter $key, WordfilterFormRequest $request)
     {
-        $key->update($request->validated());
+        $this->wordfilterRepository->update($key, $request->validated());
 
         return to_route('wordfilter.index')
             ->with('success', __(':word has been updated in the wordfilter', ['word' => $request->input('key')]));
     }
 
-    public function destroy(Wordfilter $key, RconService $rcon)
+    public function destroy(Wordfilter $key)
     {
-        $key->delete();
+        $this->wordfilterRepository->delete($key);
 
         return to_route('wordfilter.index')
             ->with('success', __(':word has been deleted from the wordfilter', ['word' => $key->key]));
     }
 
-    public function updateFilterRcon(RconService $rconService)
+    public function updateFilterRcon(): RedirectResponse
     {
-        if (!hasPermission('manage_wordfilter')) {
-            abort(401);
-        }
-
-        if (!$rconService->isConnected()) {
-            return redirect()->back()->withErrors([
-                'message' => __('The RCON connection could not be established!')
-            ]);
-        }
-
-        $rconService->updateWordFilter();
-
-        return redirect()->back()->with('success', 'RCON executed! The word filter has been updated live on the hotel');
-
+        return $this->wordfilterRepository->updateWordFilterRcon();
     }
 }

@@ -17,4 +17,10 @@ class Wordfilter extends Model
     public $timestamps = false;
 
     public $incrementing = false;
+
+    protected $casts = [
+        'hide' => 'boolean',
+        'report' => 'boolean',
+        'mute' => 'boolean',
+    ];
 }
