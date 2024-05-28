@@ -40,7 +40,7 @@
                                 <td>{{ date('Y/m/d', $user->last_online) }}</td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        @if(hasPermission('edit_user'))
+                                        @if(hasPermission('edit_user') && Auth::user()->canEditUser($user))
                                             <a href="{{ route('users.edit', $user) }}">
                                                 <x-elements.primary-button tooltip-text="{{ __('Edit user') }}">
                                                     <i class="fas fa-edit"></i>
@@ -48,7 +48,7 @@
                                             </a>
                                         @endif
 
-                                        @if(hasPermission('reset_user_password'))
+                                        @if(hasPermission('reset_user_password') && Auth::user()->canEditUser($user))
                                             <a href="{{ route('users.password.edit', $user) }}" class="ml-2">
                                                 <x-elements.success-button tooltip-text="{{ __('Reset password') }}">
                                                     <i class="fas fa-lock"></i>
@@ -56,7 +56,7 @@
                                             </a>
                                         @endif
 
-                                        @if(hasPermission('delete_user'))
+                                        @if($user->id !== Auth::id() && hasPermission('delete_user') && Auth::user()->canEditUser($user))
                                             <form class="ml-2" id="deleteUserForm" action="{{ route('user.destroy', $user) }}" method="POST" onSubmit="return confirm('Are you sure you want to delete this user?');">
                                                 @method('DELETE')
                                                 @csrf
@@ -68,7 +68,7 @@
                                         @endif
 
                                         @if(hasPermission('edit_user'))
-                                            <form class="ml-2" action="{{ route('users.clones', $user) }}"
+                                            <form class="{{ Auth::user()->canEditUser($user) ? 'ml-2' : '' }}" action="{{ route('users.clones', $user) }}"
                                                   method="POST">
                                                 @csrf
 

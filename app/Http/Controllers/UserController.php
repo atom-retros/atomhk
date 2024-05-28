@@ -8,11 +8,16 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\UserSearchFormRequest;
 use App\Models\Permission;
 use App\Models\User;
+use App\Repositories\PermissionRepository;
+use App\Repositories\UserRepository;
 use App\Services\RconService;
+use Illuminate\Support\Facades\Auth;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class UserController extends Controller
 {
-    public function __construct()
+    public function __construct(private readonly UserRepository $userRepository, private readonly PermissionRepository $permissionRepository)
     {
         $this->authorizeResource(User::class, 'user');
     }
@@ -20,24 +25,29 @@ class UserController extends Controller
     public function index()
     {
         return view('users.index', [
-            'users' => User::query()
-                ->select(['id', 'username', 'mail', 'motto', 'rank', 'look', 'online', 'ip_current', 'last_online'])
-                ->orderByDesc('id')
-                ->paginate(15),
+            'users' => $this->userRepository->fetchAll(),
         ]);
     }
 
     public function edit(User $user)
     {
+        if (!Auth::user()?->canEditUser($user)) {
+            abort(403);
+        }
+
         return view('users.edit', [
-            'user' => $user->load(['permission']),
-            'ranks' => Permission::query()->where('id', '!=', $user->rank)->get(),
+            'user' => $user->load(['permission:id,rank_name']),
+            'ranks' => $this->permissionRepository->fetchAllExceptRank($user->rank),
 
         ]);
     }
 
     public function update(UpdateUserRequest $request, User $user, RconService $rconService)
     {
+        if(!Auth::user()?->canEditUser($user)) {
+            abort(403);
+        }
+
         if (!$rconService->isConnected()) {
             $updateWithoutRcon = new UpdateUserWithoutRcon($request, $user);
             if (!$updateWithoutRcon->execute()) {
@@ -53,16 +63,30 @@ class UserController extends Controller
         return redirect()->route('users.edit', $user)->with('success', 'The user has been updated!');
     }
 
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     public function destroy(User $user, RconService $rconService)
     {
+        if(!Auth::user()?->canEditUser($user)) {
+            abort(403);
+        }
+
+        if ($user->id === Auth::id()) {
+            return redirect()->back()->withErrors([
+                'message' => __('You cannot delete your own account.')
+            ]);
+        }
+
         if ($rconService->isConnected() && $user->online) {
             $rconService->disconnectUser($user);
-            sleep(2);
+            sleep(1);
         }
 
         $user->delete();
 
-        return redirect()->route('users.index', ['page' => request()->get('page', 1)])->with(
+        return redirect()->route('users.index', ['page' => request()?->get('page', 1)])->with(
             'success',
             __('The user has been deleted')
         );

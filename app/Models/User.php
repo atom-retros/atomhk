@@ -25,6 +25,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $casts = [
+        'hidden_staff' => 'boolean',
+        'online' => 'boolean',
+    ];
+
     public function currencies(): HasMany
     {
         return $this->hasMany(UserCurrency::class, 'user_id');
@@ -84,5 +89,10 @@ class User extends Authenticatable
 
         $currentCurrency = $this->currency($currency);
         $this->currencies()->where('type', '=', $type)->update(['amount' => $currentCurrency + $amount]);
+    }
+
+    public function canEditUser(self $user): bool
+    {
+        return $this->rank >= $user->rank;
     }
 }

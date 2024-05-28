@@ -32,7 +32,6 @@ class UpdateUserWithoutRcon
         }
 
         if ($this->user->rank !== $this->request->input('rank')) {
-
             $this->user->update([
                 'rank' => $this->request->input('rank'),
             ]);
