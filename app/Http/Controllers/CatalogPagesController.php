@@ -50,7 +50,7 @@ class CatalogPagesController extends Controller
     public function edit(CatalogPage $catalogPage)
     {
         return view('catalog.pages.edit', [
-            'page' => $catalogPage
+            'page' => $catalogPage->load('items.itemBase'),
         ]);
     }
 

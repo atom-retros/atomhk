@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -13,6 +14,11 @@ class CatalogPage extends Model
     protected $guarded = ['id'];
 
     public $timestamps = false;
+
+    public function items(): HasMany
+    {
+        return $this->hasMany(CatalogItem::class, 'page_id', 'id');
+    }
 
     public function getActivitylogOptions(): LogOptions
     {

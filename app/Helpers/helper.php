@@ -54,3 +54,13 @@ if (!function_exists('hasTable')) {
         return Schema::hasTable($table);
     }
 }
+
+if (!function_exists('properCatalogItemName')) {
+    function properCatalogItemName(string $itemNam): string
+    {
+        $itemNam = explode('*', $itemNam)[0];
+        $itemNam = explode(' ', $itemNam, 2)[1] ?? $itemNam;
+
+        return $itemNam;
+    }
+}
