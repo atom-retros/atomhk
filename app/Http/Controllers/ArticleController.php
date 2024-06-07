@@ -6,6 +6,7 @@ use App\Http\Requests\ArticleFormRequest;
 use App\Models\WebsiteArticle;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Mews\Purifier\Facades\Purifier;
 
 class ArticleController extends Controller
 {
@@ -41,7 +42,7 @@ class ArticleController extends Controller
             'slug' => $slug,
             'title' => $request->input('title'),
             'short_story' => $request->input('short_story'),
-            'full_story' => clean($request->input('full_story')),
+            'full_story' => Purifier::clean($request->input('full_story')),
             'image' => sprintf('%s/%s', setting('article_images_path'), $request->input('image')),
         ]);
 
@@ -61,7 +62,7 @@ class ArticleController extends Controller
        $article->update([
             'title' => $request->input('title'),
             'short_story' => $request->input('short_story'),
-            'full_story' => clean($request->input('full_story')),
+            'full_story' => Purifier::clean($request->input('full_story')),
             'image' => sprintf('%s/%s', setting('article_images_path'), $request->input('image')),
         ]);
 

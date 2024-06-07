@@ -80,9 +80,7 @@
                                                     <strong>Content</strong>
                                                 </label>
 
-                                                <textarea style="min-height: 400px;" id="wysiwyg" name="full_story">
-                                                    {!! $article->full_story !!}
-                                                </textarea>
+                                                <x-wysiwyg :placeholder="$article->full_story"/>
                                             </div>
                                         </div>
                                     </div>
@@ -101,31 +99,9 @@
         </div>
     </div>
 
-    @push('javascript')
-        <script src="https://cdn.tiny.cloud/1/{{ setting('tinymce_api_key') }}/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-
-        <script>
-            tinymce.init({
-                selector: '#wysiwyg',
-                plugins: [
-                    "autosave advlist link lists charmap preview anchor pagebreak",
-                    "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime",
-                    "table directionality  paste textcolor colorpicker image "
-                ],
-                toolbar: "undo redo | fontselect fontsizeselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent link table | image | preview ",
-                toolbar_mode: 'floating',
-                tinycomments_mode: 'embedded',
-                tinycomments_author: 'Author name',
-                protect: [
-                    /\<\/?(if|endif)\>/g,
-                    /\<xsl\:[^>]+\>/g,
-                    /<\?php.*?\?>/g
-                ],
-            });
-
-            function changeImage(image) {
-                $('#article-img').css("background", "url('/assets/images/articles/" + image + "') center");
-            }
-        </script>
-    @endpush
+<script>
+    function changeImage(image) {
+        $('#article-img').css("background", "url('/assets/images/articles/" + image + "') center");
+    }
+</script>
 </x-layout.app>

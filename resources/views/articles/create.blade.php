@@ -48,11 +48,21 @@
                                                     <strong>Image</strong>
                                                 </label>
 
-                                                <select class="form-control" name="image" id="image" class="form-control" onkeypress="changeImage(this.value);" onchange="changeImage(this.value);">
+                                                <select class="form-control" name="image" id="image" class="form-control" onchange="previewImage(this.value);">
                                                     @foreach($images as $image)
                                                         <option value="{{ $image->getFilename() }}">{{ $image->getFilename() }}</option>
                                                     @endforeach
                                                 </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="image">
+                                                    <strong>Upload your own image</strong>
+                                                </label>
+
+                                                <x-form.input name="custom_image" type="file" placeholder="Enter the article short story"/>
                                             </div>
                                         </div>
                                     </div>
@@ -77,7 +87,7 @@
                                                     <strong>Content</strong>
                                                 </label>
 
-                                                <textarea style="min-height: 400px;" id="wysiwyg" name="full_story"></textarea>
+                                                <x-wysiwyg />
                                             </div>
                                         </div>
                                     </div>
@@ -96,31 +106,9 @@
         </div>
     </div>
 
-    @push('javascript')
-        <script src="https://cdn.tiny.cloud/1/{{ setting('tinymce_api_key') }}/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-
-        <script>
-            tinymce.init({
-                selector: '#wysiwyg',
-                plugins: [
-                    "autosave advlist link lists charmap preview anchor pagebreak",
-                    "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime",
-                    "table directionality  paste textcolor colorpicker image "
-                ],
-                toolbar: "undo redo | fontselect fontsizeselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent link table | image | preview ",
-                toolbar_mode: 'floating',
-                tinycomments_mode: 'embedded',
-                tinycomments_author: 'Author name',
-                protect: [
-                    /\<\/?(if|endif)\>/g,
-                    /\<xsl\:[^>]+\>/g,
-                    /<\?php.*?\?>/g
-                ],
-            });
-
-            function changeImage(image) {
-                $('#article-img').css("background", "url('/assets/images/articles/" + image + "') center");
-            }
-        </script>
-    @endpush
+    <script>
+        function previewImage(image) {
+            $('#article-img').css("background", "url('/assets/images/articles/" + image + "') center");
+        }
+    </script>
 </x-layout.app>
