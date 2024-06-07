@@ -11,6 +11,7 @@ class CatalogItemController extends Controller
     {
         $itemFurnidata = json_decode(file_get_contents(public_path(setting('nitro_furnidata_path'))), true);
         $itemType = 'invalid';
+        $itemData = [];
 
         if ($item->itemBase->type === 's') {
             $itemType = 'roomitemtypes';
@@ -28,7 +29,6 @@ class CatalogItemController extends Controller
             });
         }
 
-        // Flat the array but keep it keys as the name instead of being number key based
         $itemData = collect($itemData)->mapWithKeys(function ($item) {
             return ['furni' => $item];
         });
@@ -36,7 +36,7 @@ class CatalogItemController extends Controller
         return view('catalog.items.edit', [
             'item' => $item->load('itemBase', 'catalogPage'),
             'pages' => CatalogPage::query()->whereNot('id', $item->page_id)->get(),
-            'furnidata' => $itemData ?? [],
+            'furnidata' => $itemData,
         ]);
     }
 }
