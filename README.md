@@ -1,9 +1,14 @@
 <div align="center">
-<a href="https://discord.gg/rX3aShUHdg" target="_blank">
+<a href="https://discord.gg/SesHEprZvr" target="_blank">
     <img src="https://i.imgur.com/9ePNdJ4.png" alt="Atom HK"/><br>
     Join the official Atom CMS Discord server
 </a>
 </div>
+
+## Archived
+I've stepped away from the retro scene, and since transfered the ownership of Atom to another amazing Developer, which is responsible for **Atom v2** - in which he has also brought in a new housekeeping.
+
+You can follow the progress by click on the discord URL above.
 
 
 **Disclaimer**
