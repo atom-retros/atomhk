@@ -8,7 +8,7 @@
 ## Archived
 I've stepped away from the retro scene, and since transfered the ownership of Atom to another amazing Developer, which is responsible for **Atom v2** - in which he has also brought in a new housekeeping.
 
-You can follow the progress by click on the discord URL above.
+You can follow the progress by clicking on the discord URL above.
 
 
 **Disclaimer**
